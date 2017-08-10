@@ -1,0 +1,20 @@
+name: StarPlugin
+main: com.starwish.plugin.starmain
+version: 0.0.7 Dev
+author: StarWish
+
+commands:
+   starplugin:
+     description: “插件主命令”
+     aliases: [starp]
+   biu:
+     description: "元首的愤怒"
+permissions:
+   starplugin.uuid:
+     default: op
+   starplugin.version:
+     default: default
+   starplugin.clearscreen:
+     default: op 
+   starplugin.biu:
+     default: op   
