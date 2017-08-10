@@ -9,6 +9,7 @@ import com.starwish.plugin.command.starcommandbiu;
 /**
 * 本插件基于 GPL-3.0 开源.
 * 作者 StarWish
+* 2
 **/
 
 
