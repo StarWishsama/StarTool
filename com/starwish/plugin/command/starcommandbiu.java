@@ -6,8 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Ö¸Áî BiuµÄÃüÁî²¿·Ö.
- * Ì«¸´ÔÓÁËËùÒÔÅª³öÀ´Ğ´ XD
+ * æŒ‡ä»¤ /biu çš„å‘½ä»¤éƒ¨åˆ†.
+ * å¤ªå¤æ‚äº†æ‰€ä»¥å¼„å‡ºæ¥å†™ XD
  */
 
 public class starcommandbiu implements CommandExecutor
@@ -20,14 +20,14 @@ public class starcommandbiu implements CommandExecutor
 	    {
 		    if (!(sender instanceof Player)) 
 		    {
-		    sender.sendMessage("¡ìbStarPlugin > ¡ìeÄã±ØĞëÔÚÓÎÏ·ÄÚÊ¹ÓÃ¸ÃÃüÁî!");
+		    sender.sendMessage("Â§bStarPlugin > Â§eä½ å¿…é¡»åœ¨æ¸¸æˆå†…ä½¿ç”¨è¯¥å‘½ä»¤!");
 		    return true;
 		    }
 		    
 		    Player player = (Player) sender;
 	    	  		
 	    	player.setHealth(0);
-	    	sender.sendMessage("¡ìbStarPlugin > ¡ìeÄã±»¹¶¹ÜÀíBiuÁËÒ»ÏÂ!¾ªÏ²°É!");
+	    	sender.sendMessage("Â§bStarPlugin > Â§eä½ è¢«è‹Ÿç®¡ç†Biuäº†ä¸€ä¸‹!æƒŠå–œå§!");
 	    	return true;
 	    }
 		return false;		
