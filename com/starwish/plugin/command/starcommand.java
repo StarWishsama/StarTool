@@ -16,15 +16,15 @@ public class starcommand implements CommandExecutor
 		{	
 		    if (args.length == 0 || sender instanceof ConsoleCommandSender)
 		    {
-			sender.sendMessage("¡ìbStarPlugin V0.0.8 Dev, By StarWish_");
-			sender.sendMessage("¡ìf");
-			sender.sendMessage("/biu [Íæ¼Ò] ÈÃÒ»¸öÍæ¼ÒÁ¢¼´È¥ÊÀ");
-			sender.sendMessage("/starp uuid »ñÈ¡Ä³Î»Íæ¼ÒµÄUUID");
-			sender.sendMessage("/starp clear ÇåÆÁÁÄÌìÀ¸");
-			sender.sendMessage("/starp version ÏÔÊ¾²å¼şÄ¿Ç°°æ±¾ºÅ");
-			sender.sendMessage("/sptest Debug ÃüÁî");
-			sender.sendMessage("¡ìf");
-			sender.sendMessage("¡ìc¡ìlÇë×¢Òâ¡£±¾²å¼ş²»Ö§³Ö/reloadÃüÁî!");
+			sender.sendMessage("Â§bStarPlugin V0.0.8 Dev, By StarWish_");
+			sender.sendMessage("Â§f");
+			sender.sendMessage("/biu [ç©å®¶] è®©ä¸€ä¸ªç©å®¶ç«‹å³å»ä¸–");
+			sender.sendMessage("/starp uuid è·å–æŸä½ç©å®¶çš„UUID");
+			sender.sendMessage("/starp clear æ¸…å±èŠå¤©æ ");
+			sender.sendMessage("/starp version æ˜¾ç¤ºæ’ä»¶ç›®å‰ç‰ˆæœ¬å·");
+			sender.sendMessage("/sptest Debug å‘½ä»¤");
+			sender.sendMessage("Â§cÂ§lè¯·æ³¨æ„ã€‚æœ¬æ’ä»¶ä¸æ”¯æŒ/reloadå‘½ä»¤!");
+			sender.sendMessage("Â§f");
 			return true;
 		    }
 		    
@@ -35,13 +35,13 @@ public class starcommand implements CommandExecutor
 		    	if (sender.hasPermission("starplugin.uuid"))
 		    	{
 			    	
-			    		sender.sendMessage("¡ìbStarPlugin > ¡ìcÕıÔÚ»ñÈ¡ÄúµÄUUID...");
-				    	sender.sendMessage("¡ìbStarPlugin > ¡ìeÄãµÄUUIDÎª:" + p.getUniqueId());	
+			    		sender.sendMessage("Â§bStarPlugin > Â§cæ­£åœ¨è·å–æ‚¨çš„UUID...");
+				    	sender.sendMessage("Â§bStarPlugin > Â§eä½ çš„UUIDä¸º:" + p.getUniqueId());	
 				    	return true;
 			    }
 		    	else 
 		    	{
-		    		sender.sendMessage("¡ìbStarPlugin > ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+		    		sender.sendMessage("Â§bStarPlugin > Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
 		    		return true;
 		    	}	    	
 		    }
@@ -50,38 +50,38 @@ public class starcommand implements CommandExecutor
 		    {
 		    	if (sender.hasPermission("starplugin.version") || sender instanceof ConsoleCommandSender)
 		    	{
-					sender.sendMessage("¡ìbStarPlugin > ¡ìeÄ¿Ç°°æ±¾Îª: ¡ìaV0.0.8 DEV");					
+					sender.sendMessage("Â§bStarPlugin > Â§eç›®å‰ç‰ˆæœ¬ä¸º: Â§aV0.0.8 DEV");					
 		    	}
 		    	else 
 		    	{
-		    		sender.sendMessage("¡ìbStarPlugin > ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+		    		sender.sendMessage("Â§bStarPlugin > Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
 		    	}
 		      return true;	
 		   }
 		    
 		   if (args[0].equalsIgnoreCase("updatelog") || sender instanceof ConsoleCommandSender)
 		   {
-			   sender.sendMessage("¡ìbV0.0.8 DEV ¸üĞÂÈÕÖ¾:");
-			   sender.sendMessage("ĞŞ¸´ Bug");
-			   sender.sendMessage("½«/biuÃüÁîµ¥¶À¹éÀà·½±ãÎ´À´ Coding.");
-			   sender.sendMessage("ĞŞ¸´²ÎÊıBug.");
+			   sender.sendMessage("Â§bV0.0.8 DEV æ›´æ–°æ—¥å¿—:");
+			   sender.sendMessage("ä¿®å¤ Bug");
+			   sender.sendMessage("å°†/biuå‘½ä»¤å•ç‹¬å½’ç±»æ–¹ä¾¿æœªæ¥ Coding.");
+			   sender.sendMessage("ä¿®å¤å‚æ•°Bug.");
 		   }
 		    
 		   if (args[0].equalsIgnoreCase("clear"))
 		   {
 			    if (!(sender instanceof Player)) 
 			    {
-			    sender.sendMessage("¡ìbStarPlugin > ¡ìeÄã±ØĞëÔÚÓÎÏ·ÄÚÊ¹ÓÃ¸ÃÃüÁî!");
+			    sender.sendMessage("Â§bStarPlugin > Â§eä½ å¿…é¡»åœ¨æ¸¸æˆå†…ä½¿ç”¨è¯¥å‘½ä»¤!");
 			    return true;
 			    }
 			    
 			    if (sender.hasPermission("starplugin.clearscreen"))
 					   {
-				         sender.sendMessage("¡ìbStarPlugin > ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+				         sender.sendMessage("Â§bStarPlugin > Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
 					   } 
 				         for(int i = 0; i <= 50; i++)
 				         sender.sendMessage(" ");
-				         sender.sendMessage("¡ìbStarPlugin > ¡ìeÇåÆÁ³É¹¦~"); 
+				         sender.sendMessage("Â§bStarPlugin > Â§eæ¸…å±æˆåŠŸ~"); 
 				         return true;
 		   }
 	   }
