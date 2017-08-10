@@ -6,6 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.starwish.plugin.command.starcommand;
 import com.starwish.plugin.command.starcommandbiu;
 
+/**
+* 本插件基于 GPL-3.0 开源.
+* 作者 StarWish
+**/
+
 
 public class starmain extends JavaPlugin
 {
