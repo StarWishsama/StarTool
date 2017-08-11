@@ -6,10 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
-*
  * 指令 /biu 的命令部分.
  * 太复杂了所以弄出来写 XD
- * 
  */
 
 public class starcommandbiu implements CommandExecutor
