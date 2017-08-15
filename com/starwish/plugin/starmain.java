@@ -146,6 +146,5 @@ public class starmain extends JavaPlugin
 		   }
 	   }
         return false;
-    }
-   
+    }   
 }
