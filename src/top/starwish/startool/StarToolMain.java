@@ -145,7 +145,7 @@ public class StarToolMain extends JavaPlugin
             		sender.sendMessage("§a你的IP地址: §f" + Bukkit.getIp());
             	}
             }
-            } 	
+           } 	
         }
         return false;
     }
