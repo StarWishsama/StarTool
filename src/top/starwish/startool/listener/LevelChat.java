@@ -9,6 +9,6 @@ public class LevelChat implements Listener
     @EventHandler
     public void ChatLevel(AsyncPlayerChatEvent event)
     {
-        event.setFormat("¡ìf[¡ìe" + event.getPlayer().getLevel() + "¡ìe¼¶¡ìf]" + event.getFormat());
+        event.setFormat("Â§f[Â§e" + event.getPlayer().getLevel() + "Â§eçº§Â§f]" + event.getFormat());
     }
 }
