@@ -1,20 +1,20 @@
-name: StarPlugin
-main: com.starwish.plugin.starmain
-version: 0.0.7 Dev
+name: StarTool
+main: top.starwish.startool.StarToolMain
+version: 0.1.1
 author: StarWish
 
 commands:
-   starplugin:
+   startool:
      description: “插件主命令”
-     aliases: [starp]
+     aliases: [stool]
    biu:
      description: "元首的愤怒"
 permissions:
-   starplugin.uuid:
+   startool.uuid:
      default: op
-   starplugin.version:
-     default: default
-   starplugin.clearscreen:
+   startool.version:
+     default: op
+   startool.clearscreen:
      default: op 
-   starplugin.biu:
-     default: op   
+   startool.biu:
+     default: op  
