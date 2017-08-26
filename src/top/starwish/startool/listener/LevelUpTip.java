@@ -15,7 +15,7 @@ public class LevelUpTip implements Listener
             return;
         }
         
-        a.sendTitle("¡ìe¡ìlÒ®! ¹§Ï²ÄãÉı¼¶ÁË!", "¡ìaµ±Ç°µÈ¼¶Îª: " + event.getNewLevel(), 10, 70, 20);
+        a.sendTitle("Â§eÂ§lè€¶! æ­å–œä½ å‡çº§äº†!", "Â§aå½“å‰ç­‰çº§ä¸º: " + event.getNewLevel(), 10, 70, 20);
         return;
     }
 }
