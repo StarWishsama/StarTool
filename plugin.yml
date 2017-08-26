@@ -9,6 +9,7 @@ commands:
      aliases: [stool]
    biu:
      description: "元首的愤怒"
+     
 permissions:
    startool.uuid:
      default: op
