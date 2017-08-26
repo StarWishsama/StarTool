@@ -144,7 +144,7 @@ public class StarToolMain extends JavaPlugin
             		sender.sendMessage("§a服务端版本: §f" + Bukkit.getBukkitVersion());
             		sender.sendMessage("§a你的IP地址: §f" + Bukkit.getIp());
             	}
-            }
+             }
            } 	
         }
         return false;
