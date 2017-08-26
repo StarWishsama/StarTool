@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /*
- * Î´Ê¹ÓÃ
+ * æœªä½¿ç”¨çš„ Class
  */
 
 public class BiuCommand
@@ -18,16 +18,16 @@ public class BiuCommand
 
             if (!(sender instanceof Player))
             {
-                    sender.sendMessage("¡ìbStarTool > ¡ìeÄã±ØĞëÔÚÓÎÏ·ÄÚÊ¹ÓÃ¸ÃÃüÁî!");
+                    sender.sendMessage("Â§bStarTool > Â§eä½ å¿…é¡»åœ¨æ¸¸æˆå†…ä½¿ç”¨è¯¥å‘½ä»¤!");
             }
 
-            else if  (!sender.hasPermission("startool.biu")) sender.sendMessage("¡ìbStarTool > ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+            else if  (!sender.hasPermission("startool.biu")) sender.sendMessage("Â§bStarTool > Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
             
             else {
                 Player player = (Player) sender;
 
                 player.setHealth(0);
-                sender.sendMessage("¡ìbStarTool > ¡ìeÄã±»¹¶¹ÜÀíBiuÁËÒ»ÏÂ!¾ªÏ²°É!");
+                sender.sendMessage("Â§bStarTool > Â§eä½ è¢«è‹Ÿç®¡ç†Biuäº†ä¸€ä¸‹!æƒŠå–œå§!");
                 return true;
 
             }
