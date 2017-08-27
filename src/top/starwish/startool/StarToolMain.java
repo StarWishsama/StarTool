@@ -14,7 +14,7 @@ import top.starwish.startool.listener.*;
  * 
  * 本插件基于 GPL-3.0 开源.
  * 作者 StarWish
- * 
+ *
  **/
 
 public class StarToolMain extends JavaPlugin
