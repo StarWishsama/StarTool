@@ -14,7 +14,7 @@ import top.starwish.startool.listener.*;
  * 
  * 本插件基于 GPL-3.0 开源.
  * 作者 StarWish
- *
+ * 
  **/
 
 public class StarToolMain extends JavaPlugin
@@ -132,18 +132,19 @@ public class StarToolMain extends JavaPlugin
                     sender.sendMessage("§b" + prefix + " §b> §c你没有权限来执行这条命令!");
                     return true;
                 }
-            }            
+            }    
+            	
             if (args[0].equalsIgnoreCase("info"))
             {
-            	if ((sender instanceof ConsoleCommandSender))
+            	if ((sender instanceof Player))
             	{
-            		sender.sendMessage("§a服务端版本: §f" + Bukkit.getBukkitVersion());
-            		sender.sendMessage("§a你的IP地址: §f" + Bukkit.getIp());
+            		sender.sendMessage("§a服务端版本: §f" + sender.getServer().getBukkitVersion());
+            		sender.sendMessage("§a你的IP地址: §f" + sender.getServer().getIp());
             		return true;
             	}
             }	
-        }
-    }
+         }
+      }
     return false;
-}
+   }
 }
