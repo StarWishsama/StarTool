@@ -1,6 +1,6 @@
 name: StarTool
 main: top.starwish.startool.StarToolMain
-version: 0.1.1
+version: 0.1.2
 author: StarWish
 
 commands:
@@ -9,7 +9,6 @@ commands:
      aliases: [stool]
    biu:
      description: "元首的愤怒"
-     
 permissions:
    startool.uuid:
      default: op
@@ -18,4 +17,4 @@ permissions:
    startool.clearscreen:
      default: op 
    startool.biu:
-     default: op  
+     default: op 
