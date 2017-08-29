@@ -1,4 +1,4 @@
-# StarTool
+# StarTool (WIP)
 一个跨版本的小功能插件
 
 本插件基于 GPL-3.0 开源
