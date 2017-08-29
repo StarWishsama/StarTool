@@ -30,11 +30,11 @@ public class BiuCommand implements CommandExecutor
                 Player otherp = Bukkit.getPlayer(args[0]);
                 
                  otherp.setHealth(0);
-                 otherp.sendMessage("§bStarTool > §e你被苟管理 §c" + sender.getName() + " §eBiu了一下!惊喜吧!");
-                 sender.sendMessage("§bStarTool > §e成功击杀玩家" + otherp.getName() + "§e!"); 
+                 otherp.sendMessage("§e你被苟管理 §c" + sender.getName() + " §eBiu了一下!惊喜吧!");
+                 sender.sendMessage("§e成功击杀玩家" + otherp.getName() + "§e!"); 
                  return true;
-             }
-            
+             }	     
+           } 
             }
             else {
             sender.sendMessage("§bStarTool > §c你必须在游戏内使用该命令!");
