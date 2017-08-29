@@ -22,7 +22,6 @@ public class StarToolMain extends JavaPlugin implements Listener
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在载入监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChat(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTip(), this);
-        Bukkit.getPluginManager().registerEvents(this, this);
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 载入成功.");
@@ -138,8 +137,8 @@ public class StarToolMain extends JavaPlugin implements Listener
             		sender.sendMessage("§a你的IP地址: §f" + sender.getServer().getIp());
             		return true;
             	    }
-            }	                 
-        }
+               }	                 
+          }
 		return false;
     }
 }
