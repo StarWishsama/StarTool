@@ -24,6 +24,7 @@ public class StarToolMain extends JavaPlugin implements Listener
         Bukkit.getPluginManager().registerEvents(new LevelUpTip(), this);
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
+	Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 载入成功.");
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > §f欢迎使用 StarTool, 版本 " + version +", 作者 StarWish");
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > §f感谢您的使用!");
@@ -111,7 +112,7 @@ public class StarToolMain extends JavaPlugin implements Listener
 
             if (args[0].equalsIgnoreCase("reload"))
             {
-            	if ((sender instanceof ConsoleCommandSender)) 
+            	if (sender instanceof ConsoleCommandSender) 
             	{
                     if (sender.hasPermission("startool.reload")) 
                         {
@@ -125,16 +126,15 @@ public class StarToolMain extends JavaPlugin implements Listener
                     {
                     sender.sendMessage("§b" + prefix + " §b> §c你没有权限来执行这条命令!");
                     return true;
-                    }
-            	}
+                    } 
+            	}   
             }    
             	
             if (args[0].equalsIgnoreCase("info"))
             {
             	    if ((sender instanceof Player))
             	    {         	
-            		sender.sendMessage("§a服务端版本: §f" + sender.getServer().getBukkitVersion());
-            		sender.sendMessage("§a你的IP地址: §f" + sender.getServer().getIp());
+            		sender.sendMessage("§a服务端版本: §f" + sender.getServer().getVersion());
             		return true;
             	    }
                }	                 
