@@ -1,16 +1,16 @@
 package top.starwish.startool;
 
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import top.starwish.startool.command.BiuCommand;
+import top.starwish.startool.command.LabaCommand;
 import top.starwish.startool.listener.*;
 
-public class StarToolMain extends JavaPlugin implements Listener
+public class StarToolMain extends JavaPlugin
 {
 
     String prefix = getConfig().getString("PluginPrefix");
@@ -19,12 +19,17 @@ public class StarToolMain extends JavaPlugin implements Listener
     @Override
     public void onEnable()
     {
+    	//注册监听器
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在载入监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChat(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTip(), this);
+        
+        //注册命令
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
-	Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
+        Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
+        
+        //载入完成提示
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > 载入成功.");
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > §f欢迎使用 StarTool, 版本 " + version +", 作者 StarWish");
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > §f感谢您的使用!");
@@ -128,17 +133,8 @@ public class StarToolMain extends JavaPlugin implements Listener
                     return true;
                     } 
             	}   
-            }    
-            	
-            if (args[0].equalsIgnoreCase("info"))
-            {
-            	    if ((sender instanceof Player))
-            	    {         	
-            		sender.sendMessage("§a服务端版本: §f" + sender.getServer().getVersion());
-            		return true;
-            	    }
-               }	                 
-          }
+            }               	
+        }
 		return false;
     }
 }
