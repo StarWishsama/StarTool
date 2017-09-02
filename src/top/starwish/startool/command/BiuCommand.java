@@ -16,7 +16,8 @@ public class BiuCommand implements CommandExecutor
         	
             if (sender instanceof Player)
             {
-            
+              if (sender.hasPermission("startool.biu"))
+              {
                 if (args.length == 0)
                 {        
             	   Player player = (Player) sender;
@@ -26,19 +27,37 @@ public class BiuCommand implements CommandExecutor
                 }            
             
                 if (args.length == 1)
-                {            	
-                    Player otherp = Bukkit.getPlayer(args[0]);               
+                {    
+                	Player otherp = Bukkit.getPlayer(args[0]); 
+                	if (sender.hasPermission("startool.biu.other"))
+                	{
                     otherp.setHealth(0);
                     otherp.sendMessage("§bStarTool > §e你被苟管理 §c" + sender.getName() + " §eBiu了一下!惊喜吧!");
-                    sender.sendMessage("§bStarTool > §e成功击杀玩家" + otherp.getName() + "§e!"); 
+                    sender.sendMessage("§bStarTool > §e成功击杀玩家 " + otherp.getName() + " §e!"); 
                     return true;
+                	}
+                	if (otherp !=null)
+                	{
+                		sender.sendMessage("§bStarTool > §c这名玩家不存在/不在线!");
+                		return true;
+                	}
+                	else
+                	{
+                		sender.sendMessage("§bStarTool > §c你没有权限!");
+                	}
                 }                   
             }
-            else {
-            sender.sendMessage("§bStarTool > §c你必须在游戏内使用该命令!");
+              else 
+              {
+            	  sender.sendMessage("§bStarTool > §c你没有权限!");
+              }
+        }
+        else 
+        { 
+        	sender.sendMessage("§bStarTool > §c你必须在游戏内使用该命令!");
             return true;
-            } 
-        }   
-	   return false;
-    }
+        } 
+      }   
+     return false;
+   }
 }
