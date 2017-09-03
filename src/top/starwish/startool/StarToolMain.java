@@ -54,7 +54,6 @@ public class StarToolMain extends JavaPlugin
         getLogger().info("正在载入监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChat(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTip(), this);
-        Bukkit.getPluginManager().registerEvents(new BiuCommand(), this);
         getLogger().info("监听器已接入.");
         
         //注册命令
