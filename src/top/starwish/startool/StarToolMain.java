@@ -27,7 +27,7 @@ public class StarToolMain extends JavaPlugin
     public void onEnable()
     {
     	//加载文件
-    	getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在载入文件...");
+    	getLogger().info("正在载入文件...");
     	File config = new File(getDataFolder(), "config.yml");
         FileConfiguration configchange = YamlConfiguration
                 .loadConfiguration(config);
@@ -47,14 +47,18 @@ public class StarToolMain extends JavaPlugin
         saveDefaultConfig();
         getLogger().info("文件载入完成.");
         
+        //接入 Vault
+        getLogger().info("正在 Hook Vault...");
+		        
     	//注册监听器
-        getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在载入监听器...");
+        getLogger().info("正在载入监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChat(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTip(), this);
+        Bukkit.getPluginManager().registerEvents(new BiuCommand(), this);
         getLogger().info("监听器已接入.");
         
         //注册命令
-        getServer().getConsoleSender().sendMessage("§b" + prefix + " > 正在注册命令...");
+        getLogger().info("正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
         Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
         getLogger().info("命令已注册.");
@@ -69,6 +73,7 @@ public class StarToolMain extends JavaPlugin
     public void onDisable()
     {
         getServer().getConsoleSender().sendMessage("§b" + prefix + " > §7正在关闭插件...");
+        saveDefaultConfig();
     }
     
 
