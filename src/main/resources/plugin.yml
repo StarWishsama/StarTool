@@ -1,0 +1,30 @@
+name: StarTool
+main: top.starwish.startool.StarToolMain
+version: 0.1.5-SNAPSHOT
+description: "一个简单实用的小插件"
+author: StarWish
+
+commands:
+   startool:
+     description: “插件主命令”
+     aliases: [stool]
+   biu:
+     description: "让元首Biu你一下!"
+   laba:
+     description: "可以发送全服公告"
+     aliases: [lb]
+permissions:
+   startool.uuid:
+     default: op
+   startool.version:
+     default: op
+   startool.clearscreen:
+     default: op
+   startool.clearscreen.other:
+     default: op
+   startool.biu:
+     default: op
+   startool.biu.other:
+     default: op
+   startool.laba:
+     default: op
