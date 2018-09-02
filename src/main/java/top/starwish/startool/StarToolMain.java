@@ -1,9 +1,10 @@
 package top.starwish.startool;
 
+import java.io.*;
+import java.net.URL;
 import java.util.logging.Logger;
-import java.io.File;
 
-import net.milkbowl.vault.economy.EconomyResponse;
+import net.milkbowl.vault.Vault;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
@@ -13,9 +14,13 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import net.milkbowl.vault.economy.EconomyResponse;
+
 import top.starwish.startool.listener.*;
 import top.starwish.startool.commands.*;
 
@@ -23,24 +28,11 @@ public class StarToolMain extends JavaPlugin {
     String prefix = getConfig().getString("PluginPrefix");
     String version = getConfig().getString("Version");
     int LabaPrice = getConfig().getInt("LabaPrice");
+
     private static final Logger log = Logger.getLogger("Minecraft");
     private static Economy econ = null;
-    private static Permission perms = null;
-    private static Chat chat = null;
 
     //Vault
-    private boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
-        perms = rsp.getProvider();
-        return perms != null;
-    }
-
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
-    }
-
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
@@ -51,6 +43,43 @@ public class StarToolMain extends JavaPlugin {
         }
         econ = rsp.getProvider();
         return econ != null;
+    }
+
+    public String getLatestVersion(){
+        String ver =null;
+        try {
+            URL url = new URL("http://raw.githubusercontent.com/StarWishsama/StarTool/master/UpdateCheck.txt");
+            InputStream is =url.openStream();
+            BufferedReader br=new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            ver =br.readLine();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return ver;
+    }
+
+    public boolean isLatestVersion() {
+        boolean isLatest = false;
+        String latest = getLatestVersion();
+        String current = getDescription().getVersion();
+        if (latest.equalsIgnoreCase(current)) {
+            isLatest = true;
+        }
+        return isLatest;
+    }
+
+    public void Checkupdate(){
+        new BukkitRunnable(){
+            public void run() {
+                if(isLatestVersion()){
+                    getLogger().info("您当前正在使用最新版本!");
+                }
+                else {
+                    getLogger().info("最新版本已经发布!");
+                }
+            }
+        }.runTaskAsynchronously(this);
     }
 
     @Override
@@ -68,13 +97,14 @@ public class StarToolMain extends JavaPlugin {
         getLogger().info("文件载入完成.");
 
         //接入 Vault
-        getLogger().info("正在 Hook Vault...");
-        if (!setupEconomy()) {
-            getLogger().warning("服务器未安装 Vault! 正在禁用...");
-            setEnabled(false);
+        getLogger().info("正在检查服务器是否安装 Vault...");
+        if (setupEconomy()) {
+            getLogger().info("已发现 Vault 插件!");
         }
-        setupPermissions();
-        setupChat();
+        if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled()){
+            getLogger().warning("未发现服务器安装了 Vault, 插件即将禁用!");
+            this.setEnabled(false);
+        }
 
         //注册监听器
         getLogger().info("正在加载监听器...");
@@ -86,13 +116,15 @@ public class StarToolMain extends JavaPlugin {
         //注册命令
         getLogger().info("正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
-        //Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
         getLogger().info("命令已注册.");
 
         //载入完成提示
-        getLogger().info("§b" + prefix + " > 加载成功.");
-        getLogger().info("§b" + prefix + " > §f欢迎使用 StarTool, 版本 " + version + ", 作者 StarWish");
-        getLogger().info("§b" + prefix + " > §f感谢您的使用!");
+        getLogger().info(prefix + " > 加载成功.");
+        getLogger().info(prefix + " > 欢迎使用 StarTool, 版本 " + version + ", 作者 StarWish");
+        getLogger().info( prefix + " > 感谢您的使用!");
+
+        //更新检查, WIP
+        //Checkupdate();
     }
 
     @Override
@@ -217,11 +249,7 @@ public class StarToolMain extends JavaPlugin {
             return false;
         }
 
-        public static Economy getEconomy() {
-            return econ;
-        }
-
-        public static Permission getPermissions() {
-            return perms;
-        }
+    public static Economy getEconomy() {
+        return econ;
     }
+}
