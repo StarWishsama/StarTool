@@ -1,10 +1,8 @@
 package top.starwish.startool;
 
 import java.io.*;
-import java.net.URL;
 import java.util.logging.Logger;
 
-import net.milkbowl.vault.Vault;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
@@ -14,11 +12,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.permission.Permission;
 import net.milkbowl.vault.economy.EconomyResponse;
 
 import top.starwish.startool.listener.*;
@@ -28,8 +23,6 @@ public class StarToolMain extends JavaPlugin {
     String prefix = getConfig().getString("PluginPrefix");
     String version = getConfig().getString("Version");
     int LabaPrice = getConfig().getInt("LabaPrice");
-
-    private static final Logger log = Logger.getLogger("Minecraft");
     private static Economy econ = null;
 
     //Vault
@@ -45,47 +38,10 @@ public class StarToolMain extends JavaPlugin {
         return econ != null;
     }
 
-    public String getLatestVersion(){
-        String ver =null;
-        try {
-            URL url = new URL("http://raw.githubusercontent.com/StarWishsama/StarTool/master/UpdateCheck.txt");
-            InputStream is =url.openStream();
-            BufferedReader br=new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            ver =br.readLine();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        return ver;
-    }
-
-    public boolean isLatestVersion() {
-        boolean isLatest = false;
-        String latest = getLatestVersion();
-        String current = getDescription().getVersion();
-        if (latest.equalsIgnoreCase(current)) {
-            isLatest = true;
-        }
-        return isLatest;
-    }
-
-    public void Checkupdate(){
-        new BukkitRunnable(){
-            public void run() {
-                if(isLatestVersion()){
-                    getLogger().info("Äúµ±Ç°ÕıÔÚÊ¹ÓÃ×îĞÂ°æ±¾!");
-                }
-                else {
-                    getLogger().info("×îĞÂ°æ±¾ÒÑ¾­·¢²¼!");
-                }
-            }
-        }.runTaskAsynchronously(this);
-    }
-
     @Override
     public void onEnable() {
-        //¼ÓÔØÎÄ¼ş
-        getLogger().info("ÕıÔÚ¼ÓÔØÎÄ¼ş...");
+        //åŠ è½½æ–‡ä»¶
+        getLogger().info("æ­£åœ¨åŠ è½½æ–‡ä»¶...");
         File config = new File(getDataFolder(), "config.yml");
         FileConfiguration configchange = YamlConfiguration
                 .loadConfiguration(config);
@@ -94,43 +50,40 @@ public class StarToolMain extends JavaPlugin {
             saveDefaultConfig();
             reloadConfig();
         }
-        getLogger().info("ÎÄ¼şÔØÈëÍê³É.");
+        getLogger().info("æ–‡ä»¶è½½å…¥å®Œæˆ.");
 
-        //½ÓÈë Vault
-        getLogger().info("ÕıÔÚ¼ì²é·şÎñÆ÷ÊÇ·ñ°²×° Vault...");
+        //æ¥å…¥ Vault
+        getLogger().info("æ­£åœ¨æ£€æŸ¥æœåŠ¡å™¨æ˜¯å¦å®‰è£… Vault...");
         if (setupEconomy()) {
-            getLogger().info("ÒÑ·¢ÏÖ Vault ²å¼ş!");
+            getLogger().info("å·²å‘ç° Vault æ’ä»¶!");
         }
         if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled()){
-            getLogger().warning("Î´·¢ÏÖ·şÎñÆ÷°²×°ÁË Vault, ²å¼ş¼´½«½ûÓÃ!");
+            getLogger().warning("æœªå‘ç°æœåŠ¡å™¨å®‰è£…äº† Vault, æ’ä»¶å³å°†ç¦ç”¨!");
             this.setEnabled(false);
         }
 
-        //×¢²á¼àÌıÆ÷
-        getLogger().info("ÕıÔÚ¼ÓÔØ¼àÌıÆ÷...");
+        //æ³¨å†Œç›‘å¬å™¨
+        getLogger().info("æ­£åœ¨åŠ è½½ç›‘å¬å™¨...");
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
         Bukkit.getPluginManager().registerEvents(new ChatSendMyPos(), this);
-        getLogger().info("¼àÌıÆ÷ÒÑ¼ÓÔØ.");
+        getLogger().info("ç›‘å¬å™¨å·²åŠ è½½.");
 
-        //×¢²áÃüÁî
-        getLogger().info("ÕıÔÚ×¢²áÃüÁî...");
+        //æ³¨å†Œå‘½ä»¤
+        getLogger().info("æ­£åœ¨æ³¨å†Œå‘½ä»¤...");
         Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
-        getLogger().info("ÃüÁîÒÑ×¢²á.");
+        getLogger().info("å‘½ä»¤å·²æ³¨å†Œ.");
 
-        //ÔØÈëÍê³ÉÌáÊ¾
-        getLogger().info(prefix + " > ¼ÓÔØ³É¹¦.");
-        getLogger().info(prefix + " > »¶Ó­Ê¹ÓÃ StarTool, °æ±¾ " + version + ", ×÷Õß StarWish");
-        getLogger().info( prefix + " > ¸ĞĞ»ÄúµÄÊ¹ÓÃ!");
-
-        //¸üĞÂ¼ì²é, WIP
-        //Checkupdate();
+        //è½½å…¥å®Œæˆæç¤º
+        getLogger().info(prefix + " > åŠ è½½æˆåŠŸ.");
+        getLogger().info(prefix + " > æ¬¢è¿ä½¿ç”¨ StarTool, ç‰ˆæœ¬ " + version + ", ä½œè€… StarWish");
+        getLogger().info( prefix + " > æ„Ÿè°¢æ‚¨çš„ä½¿ç”¨!");
     }
 
     @Override
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
-        getServer().getConsoleSender().sendMessage("¡ìb" + prefix + " > ¡ì7ÕıÔÚ¹Ø±Õ²å¼ş...");
+        getServer().getConsoleSender().sendMessage("Â§b" + prefix + " > Â§7æ­£åœ¨å…³é—­æ’ä»¶...");
         saveDefaultConfig();
     }
 
@@ -140,37 +93,37 @@ public class StarToolMain extends JavaPlugin {
                 if (sender instanceof Player) {
                     if (sender.hasPermission("startool.laba")) {
                         if (args.length == 0) {
-                            sender.sendMessage("¡ìbStarTool > ¡ìeÊ¹ÓÃ·½·¨: /laba <ÄÚÈİ>");
+                            sender.sendMessage("Â§bStarTool > Â§eä½¿ç”¨æ–¹æ³•: /laba <å†…å®¹>");
                             return true;
                         }
 
                         if (args.length == 1) {
                             EconomyResponse s = econ.bankWithdraw(sender.getName(), LabaPrice);
                             if (s.transactionSuccess()) {
-                                Bukkit.broadcastMessage("¡ìbÍæ¼Ò ¡ìe" + sender.getName() + " ¡ìb·¢ËÍÁËÒ»ÌõĞ¡À®°ÈĞÅÏ¢!");
-                                Bukkit.broadcastMessage("¡ìd¡ìl" + sender.getName() + " ¡ìe¡ìlËµ: " + args[0]);
+                                Bukkit.broadcastMessage("Â§bç©å®¶ Â§e" + sender.getName() + " Â§bå‘é€äº†ä¸€æ¡å°å–‡å­ä¿¡æ¯!");
+                                Bukkit.broadcastMessage("Â§dÂ§l" + sender.getName() + " Â§eÂ§lè¯´: " + args[0]);
                                 return true;
                             } else {
-                                sender.sendMessage("¡ìb" + prefix + " ¡ìc> ÄãÃ»ÓĞ×ã¹»µÄ½ğÇ®!");
+                                sender.sendMessage("Â§b" + prefix + " Â§c> ä½ æ²¡æœ‰è¶³å¤Ÿçš„é‡‘é’±!");
                             }
                         }
                     } else {
-                        sender.sendMessage("¡ìb" + prefix + " ¡ìc> ÄãÃ»ÓĞÈ¨ÏŞ!");
+                        sender.sendMessage("Â§b" + prefix + " Â§c> ä½ æ²¡æœ‰æƒé™!");
                     }
                 }
             }
 
             if (cmd.getName().equalsIgnoreCase("startool")) {
                 if (args.length == 0) {
-                    sender.sendMessage("¡ìbStarTool " + version + ", By StarWish_");
-                    sender.sendMessage("¡ìf");
-                    sender.sendMessage("/laba(/lb) [ÄÚÈİ] ·¢ËÍÈ«·ş¹«¸æ");
-                    sender.sendMessage("/biu <Íæ¼Ò> ÈÃÒ»¸öÍæ¼ÒÁ¢¼´È¥ÊÀ");
-                    sender.sendMessage("/stool uuid »ñÈ¡ÄãµÄUUID");
-                    sender.sendMessage("/stool clear <Íæ¼Ò> ÇåÆÁÈ«·ş/Íæ¼ÒµÄÁÄÌìÀ¸");
-                    sender.sendMessage("/stool version ÏÔÊ¾²å¼şÄ¿Ç°°æ±¾");
-                    sender.sendMessage("/stool reload ÖØÔØ²å¼şÅäÖÃ");
-                    sender.sendMessage("¡ìf");
+                    sender.sendMessage("Â§bStarTool " + version + ", By StarWish_");
+                    sender.sendMessage("Â§f");
+                    sender.sendMessage("/laba(/lb) [å†…å®¹] å‘é€å…¨æœå…¬å‘Š");
+                    sender.sendMessage("/biu <ç©å®¶> è®©ä¸€ä¸ªç©å®¶ç«‹å³å»ä¸–");
+                    sender.sendMessage("/stool uuid è·å–ä½ çš„UUID");
+                    sender.sendMessage("/stool clear <ç©å®¶> æ¸…å±å…¨æœ/ç©å®¶çš„èŠå¤©æ ");
+                    sender.sendMessage("/stool version æ˜¾ç¤ºæ’ä»¶ç›®å‰ç‰ˆæœ¬");
+                    sender.sendMessage("/stool reload é‡è½½æ’ä»¶é…ç½®");
+                    sender.sendMessage("Â§f");
                     return true;
                 }
 
@@ -178,20 +131,20 @@ public class StarToolMain extends JavaPlugin {
                     if (sender instanceof Player) {
                         Player p = (Player) sender;
                         if (!(sender.hasPermission("startool.uuid"))) {
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÕıÔÚ»ñÈ¡ÄúµÄUUID...");
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÄãµÄUUIDÎª:" + p.getUniqueId());
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§cæ­£åœ¨è·å–æ‚¨çš„UUID...");
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§eä½ çš„UUIDä¸º:" + p.getUniqueId());
                             return true;
                         } else {
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
                             return true;
                         }
                     } else {
-                        sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÄã±ØĞëÊÇÒ»¸öÍæ¼Ò!");
+                        sender.sendMessage("Â§b" + prefix + " Â§b> Â§cä½ å¿…é¡»æ˜¯ä¸€ä¸ªç©å®¶!");
                     }
                 }
 
                 if (args[0].equalsIgnoreCase("version")) {
-                    sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÄ¿Ç°°æ±¾Îª: ¡ìa¡ìn" + version);
+                    sender.sendMessage("Â§b" + prefix + " Â§b> Â§eç›®å‰ç‰ˆæœ¬ä¸º: Â§aÂ§n" + version);
                     return true;
                 }
 
@@ -201,33 +154,33 @@ public class StarToolMain extends JavaPlugin {
                             if (args.length == 1) {
                                 for (int i = 0; i <= 60; i++)
                                     Bukkit.broadcastMessage("       ");
-                                sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÈ«·şÇåÆÁ³É¹¦~");
+                                sender.sendMessage("Â§b" + prefix + " Â§b> Â§eå…¨æœæ¸…å±æˆåŠŸ~");
                                 return true;
                             }
                             if (sender.hasPermission("startool.clearscreen.other")) {
                                 Player otherp = Bukkit.getPlayer(args[1]);
                                 if (args.length == 2) {
                                     if (otherp == null) {
-                                        sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÍæ¼ÒÃû×Ö´íÎó»ò²»´æÔÚ!");
+                                        sender.sendMessage("Â§b" + prefix + " Â§b> Â§cç©å®¶åå­—é”™è¯¯æˆ–ä¸å­˜åœ¨!");
                                         return true;
                                     }
                                     for (int i = 0; i <= 60; i++);
                                         otherp.sendMessage("        ");
-                                    otherp.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÄúÒÑ±»¹ÜÀíÔ±ÇåÆÁ!");
-                                        sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìe³É¹¦Îª ¡ìc" + otherp.getName() + " ¡ìeÇåÆÁ!");
+                                    otherp.sendMessage("Â§b" + prefix + " Â§b> Â§eæ‚¨å·²è¢«ç®¡ç†å‘˜æ¸…å±!");
+                                        sender.sendMessage("Â§b" + prefix + " Â§b> Â§eæˆåŠŸä¸º Â§c" + otherp.getName() + " Â§eæ¸…å±!");
                                         return true;
                                     }
                                 } else {
-                                    sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÍæ¼ÒÃû×Ö´íÎó»ò²»´æÔÚ!");
+                                    sender.sendMessage("Â§b" + prefix + " Â§b> Â§cç©å®¶åå­—é”™è¯¯æˆ–ä¸å­˜åœ¨!");
                                     return true;
                                 }
                             }
                         } else {
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
                             return true;
                         }
                     } else {
-                        sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÄã±ØĞëÔÚÓÎÏ·ÄÚÊ¹ÓÃ¸ÃÃüÁî!");
+                        sender.sendMessage("Â§b" + prefix + " Â§b> Â§eä½ å¿…é¡»åœ¨æ¸¸æˆå†…ä½¿ç”¨è¯¥å‘½ä»¤!");
                         return true;
                     }
                 }
@@ -237,10 +190,10 @@ public class StarToolMain extends JavaPlugin {
                         if (sender.hasPermission("startool.reload")) {
                             reloadConfig();
                             saveConfig();
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìeÖØÔØÍê³É.");
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§eé‡è½½å®Œæˆ.");
                             return true;
                         } else {
-                            sender.sendMessage("¡ìb" + prefix + " ¡ìb> ¡ìcÄãÃ»ÓĞÈ¨ÏŞÀ´Ö´ĞĞÕâÌõÃüÁî!");
+                            sender.sendMessage("Â§b" + prefix + " Â§b> Â§cä½ æ²¡æœ‰æƒé™æ¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
                             return true;
                         }
                     }
