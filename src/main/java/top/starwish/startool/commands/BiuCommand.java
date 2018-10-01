@@ -10,24 +10,25 @@ import org.bukkit.entity.Player;
 public class BiuCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
-        if (cmd.getName().equalsIgnoreCase("biu")) {
+        if (cmd.getName().equalsIgnoreCase("km")) {
             if (sender instanceof Player) {
-                if (sender.hasPermission("startool.biu")) {
+                if (sender.hasPermission("startool.killmother")) {
                     if (args.length == 0) {
                         player.setHealth(0);
                         sender.sendMessage("Testing...");
-                        sender.sendMessage("§bStarTool > §e你被苟管理Biu了一下!惊喜吧!");
+                        sender.sendMessage("§bMotherKiller!");
                     }
                     if (args.length == 1) {
-                        if (sender.hasPermission("starwish.biu.other")) {
+                        if (sender.hasPermission("startool.killmother.other")) {
                             Player otherp = (Player) Bukkit.getPlayer("args[0]");
                             if (otherp == null) {
                                 sender.sendMessage("§bStarTool > §c这名玩家不存在/不在线!");
+                            } else {
+                                otherp.setHealth(0);
+                                otherp.sendMessage("§bStarTool > §e你被龙的传人 §c" + sender.getName() + " §eKilled your mother!");
+                                sender.sendMessage("§bStarTool > §e成功杀害玩家 " + otherp.getName() + " §e的亲妈!");
+                                return true;
                             }
-                            otherp.setHealth(0);
-                            otherp.sendMessage("§bStarTool > §e你被苟管理 §c" + sender.getName() + " §eBiu了一下!惊喜吧!");
-                            sender.sendMessage("§bStarTool > §e成功击杀玩家 " + otherp.getName() + " §e!");
-                            return true;
                         } else sender.sendMessage("§bStarTool > §c这名玩家不存在/不在线!");
                     } else sender.sendMessage("§bStarTool > §c这名玩家不存在/不在线!");
                 } else sender.sendMessage("§bStarTool > §c这名玩家不存在/不在线!");

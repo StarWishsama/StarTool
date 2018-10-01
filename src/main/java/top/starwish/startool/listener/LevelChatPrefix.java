@@ -9,6 +9,7 @@ public class LevelChatPrefix implements Listener
     @EventHandler
     public void ChatLevel(AsyncPlayerChatEvent event)
     {
+        //if () {
         event.setFormat("¡ìf[¡ìe" + event.getPlayer().getLevel() + "¡ìe¼¶¡ìf]" + event.getFormat());
     }
 }
