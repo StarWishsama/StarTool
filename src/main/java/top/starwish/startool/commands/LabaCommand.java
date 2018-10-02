@@ -15,21 +15,28 @@ public class LabaCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("laba")) {
             if (sender instanceof Player) {
-                if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled()) {
-                    sender.sendMessage("§bStarTool > §c服务器未安装经济插件, 小喇叭已被禁用!");
-                    if (sender.hasPermission("startool.laba")) {
+                if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled() && !configsetup.EnableLaba) {
+                    sender.sendMessage("§bStarTool > §c服务器未安装经济插件/或未启用小喇叭!");
+                    if (sender.hasPermission("startool.laba.use")) {
                         if (args.length == 0) {
                             sender.sendMessage("§bStarTool > §e使用方法: /laba <内容>");
                             return true;
                         }
                         if (args.length == 1) {
-                            EconomyResponse s = VaultLib.getEconomy().bankWithdraw(sender.getName(), configsetup.LabaPrice);
-                            if (s.transactionSuccess()) {
-                                Bukkit.broadcastMessage("§b玩家 §e" + sender.getName() + " §b发送了一条小喇叭信息!");
+                            if (!sender.hasPermission("startool.laba.bypass")) {
+                                EconomyResponse s = VaultLib.getEconomy().bankWithdraw(sender.getName(), configsetup.LabaPrice);
+                                if (s.transactionSuccess()) {
+                                    sender.sendMessage("§b你已成功发送了一条小喇叭!");
+                                    Bukkit.broadcastMessage("§d§l" + sender.getName() + " §e§l说: " + args[0]);
+                                    return true;
+                                } else {
+                                    sender.sendMessage("§b StarTool §c> 你没有足够的金钱!");
+                                }
+                            }
+                            else {
+                                sender.sendMessage("§b由于你与服主完成了某种交易, 本次发送无需费用!");
                                 Bukkit.broadcastMessage("§d§l" + sender.getName() + " §e§l说: " + args[0]);
                                 return true;
-                            } else {
-                                sender.sendMessage("§b StarTool §c> 你没有足够的金钱!");
                             }
                         }
                     } else {

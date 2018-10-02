@@ -1,15 +1,15 @@
 name: StarTool
-main: top.starwish.startool.startup.StarToolStartUp
-version: 0.1.5.2-SNAPSHOT
+main: top.starwish.startool.startup.StarToolStartup
+version: 0.1.5-SNAPSHOT
 description: "一个简单实用的小插件"
-author: StarWish
+author: StarWish_Sama
 
 commands:
    startool:
      description: “插件主命令”
      aliases: [stool]
-   biu:
-     description: "让元首Biu你一下!"
+   curse:
+     description: "诅咒一个玩家!"
    laba:
      description: "可以发送全服公告"
      aliases: [lb]
@@ -17,14 +17,16 @@ permissions:
    startool.uuid:
      default: op
    startool.version:
-     default: op
+     default: true
    startool.clearscreen:
      default: op
    startool.clearscreen.other:
      default: op
-   startool.biu:
+   startool.curse.use:
      default: op
-   startool.biu.other:
+   startool.curse.other:
      default: op
    startool.laba:
+     default: true
+   startool.laba.bypass:
      default: op

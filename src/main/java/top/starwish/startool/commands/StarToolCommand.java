@@ -85,6 +85,7 @@ public class StarToolCommand {
             if (args[0].equalsIgnoreCase("reload")) {
                 if (sender instanceof ConsoleCommandSender) {
                     if (sender.hasPermission("startool.reload")) {
+                        StarToolStartUp.getPlugin().reloadConfig();
                         sender.sendMessage("§bStarTool > §e重载完成.");
                         return true;
                     } else {

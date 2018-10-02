@@ -12,6 +12,7 @@ import top.starwish.startool.commands.*;
 import top.starwish.startool.config.configsetup;
 
 public class StarToolStartUp extends JavaPlugin {
+
     public void ConfigStartUp(){
         File config = new File(getDataFolder(), "config.yml");
         FileConfiguration configchange = YamlConfiguration
@@ -46,7 +47,7 @@ public class StarToolStartUp extends JavaPlugin {
 
         //注册命令
         getLogger().info("正在注册命令...");
-        Bukkit.getPluginCommand("biu").setExecutor(new BiuCommand());
+        Bukkit.getPluginCommand("biu").setExecutor(new CurseCommand());
         Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
         getLogger().info("命令已注册.");
 

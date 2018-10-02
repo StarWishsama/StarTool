@@ -10,7 +10,7 @@ public class LevelUpTips implements Listener
     @EventHandler
     public void onLevelChange(PlayerLevelChangeEvent event)
     {
-        Player player = (Player) event.getPlayer();
+        Player player = event.getPlayer();
         if (event.getNewLevel() < event.getOldLevel())
         {
             return;
