@@ -83,16 +83,14 @@ public class StarToolCommand {
             }
 
             if (args[0].equalsIgnoreCase("reload")) {
-                if (sender instanceof ConsoleCommandSender) {
                     if (sender.hasPermission("startool.reload")) {
-                        StarToolStartUp.getPlugin().reloadConfig();
+                        configsetup.reloadConfig();
                         sender.sendMessage("§bStarTool > §e重载完成.");
                         return true;
                     } else {
                         sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
                         return true;
                     }
-                }
             }
         return false;
         }

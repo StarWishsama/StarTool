@@ -15,4 +15,9 @@ public class configsetup {
        EnableChatPrefix = getConfig().getBoolean("EnableExpChatPrefix");
        return getConfig();
     }
+
+    public static FileConfiguration reloadConfig(){
+        reloadConfig();
+        return reloadConfig();
+    }
 }
