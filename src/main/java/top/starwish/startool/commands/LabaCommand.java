@@ -16,31 +16,31 @@ public class LabaCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("laba")) {
             if (sender instanceof Player) {
                 if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled() && !configsetup.EnableLaba) {
-                    sender.sendMessage("¡ìbStarTool > ¡ìc·þÎñÆ÷Î´°²×°¾­¼Ã²å¼þ/»òÎ´ÆôÓÃÐ¡À®°È!");
+                    sender.sendMessage("Â§bStarTool > Â§cæœåŠ¡å™¨æœªå®‰è£…ç»æµŽæ’ä»¶/æˆ–æœªå¯ç”¨å°å–‡å­!");
                     if (sender.hasPermission("startool.laba.use")) {
                         if (args.length == 0) {
-                            sender.sendMessage("¡ìbStarTool > ¡ìeÊ¹ÓÃ·½·¨: /laba <ÄÚÈÝ>");
+                            sender.sendMessage("Â§bStarTool > Â§eä½¿ç”¨æ–¹æ³•: /laba <å†…å®¹>");
                             return true;
                         }
                         if (args.length == 1) {
                             if (!sender.hasPermission("startool.laba.bypass")) {
                                 EconomyResponse s = VaultLib.getEconomy().bankWithdraw(sender.getName(), configsetup.LabaPrice);
                                 if (s.transactionSuccess()) {
-                                    sender.sendMessage("¡ìbÄãÒÑ³É¹¦·¢ËÍÁËÒ»ÌõÐ¡À®°È!");
-                                    Bukkit.broadcastMessage("¡ìd¡ìl" + sender.getName() + " ¡ìe¡ìlËµ: " + args[0]);
+                                    sender.sendMessage("Â§bä½ å·²æˆåŠŸå‘é€äº†ä¸€æ¡å°å–‡å­!");
+                                    Bukkit.broadcastMessage("Â§dÂ§l" + sender.getName() + " Â§eÂ§lè¯´: " + args[0]);
                                     return true;
                                 } else {
-                                    sender.sendMessage("¡ìb StarTool ¡ìc> ÄãÃ»ÓÐ×ã¹»µÄ½ðÇ®!");
+                                    sender.sendMessage("Â§b StarTool Â§c> ä½ æ²¡æœ‰è¶³å¤Ÿçš„é‡‘é’±!");
                                 }
                             }
                             else {
-                                sender.sendMessage("¡ìbÓÉÓÚÄãÓë·þÖ÷Íê³ÉÁËÄ³ÖÖ½»Ò×, ±¾´Î·¢ËÍÎÞÐè·ÑÓÃ!");
-                                Bukkit.broadcastMessage("¡ìd¡ìl" + sender.getName() + " ¡ìe¡ìlËµ: " + args[0]);
+                                sender.sendMessage("Â§bç”±äºŽä½ ä¸Žæœä¸»å®Œæˆäº†æŸç§äº¤æ˜“, æœ¬æ¬¡å‘é€æ— éœ€è´¹ç”¨!");
+                                Bukkit.broadcastMessage("Â§dÂ§l" + sender.getName() + " Â§eÂ§lè¯´: " + args[0]);
                                 return true;
                             }
                         }
                     } else {
-                        sender.sendMessage("¡ìbStarTool ¡ìc> ÄãÃ»ÓÐÈ¨ÏÞ!");
+                        sender.sendMessage("Â§bStarTool Â§c> ä½ æ²¡æœ‰æƒé™!");
                     }
                 }
             }

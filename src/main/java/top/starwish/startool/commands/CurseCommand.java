@@ -14,27 +14,27 @@ public class CurseCommand implements CommandExecutor {
                 if (sender.hasPermission("startool.curse.use")) {
                     if (args.length == 0) {
                         player.setHealth(0);
-                        sender.sendMessage("ÎÒ ×ç Öä ÎÒ ×Ô ¼º");
-                        if (args.length == 1) {
-                            if (sender.hasPermission("startool.curse.other")) {
-                                Player otherp = Bukkit.getPlayer("args[0]");
-                                if (otherp == null) {
-                                    sender.sendMessage("¡ìbStarTool > ¡ìcÕâÃûÍæ¼Ò²»´æÔÚ/²»ÔÚÏß!");
-                                }
-                                if (otherp == null && otherp.hasPermission("startool.curse.anticurse")) {
-                                    sender.sendMessage("¡ìbStarTool > ¡ìcÕâÃûÍæ¼Ò²»´æÔÚ/²»ÔÚÏß/ÎŞ·¨×çÖä!");
-                                } else {
-                                    otherp.setHealth(0);
-                                    otherp.sendMessage("¡ìbStarTool > ¡ìeÄã±»Ä³ÃûÍæ¼Ò¼ÓÒÔ×çÖä!");
-                                    sender.sendMessage("¡ìbStarTool > ¡ìe³É¹¦×çÖäÁË " + otherp.getName() + " !");
-                                    return true;
-                                }
-                            } else sender.sendMessage("¡ìbStarTool > ¡ìcÕâÃûÍæ¼Ò²»´æÔÚ/²»ÔÚÏß!");
-                        } else sender.sendMessage("¡ìbStarTool > ¡ìcÕâÃûÍæ¼Ò²»´æÔÚ/²»ÔÚÏß!");
-                    } else sender.sendMessage("¡ìbStarTool > ¡ìcÕâÃûÍæ¼Ò²»´æÔÚ/²»ÔÚÏß!");
-                } else sender.sendMessage("¡ìbStarTool > ¡ìcÄãÃ»ÓĞÈ¨ÏŞ!");
-            } else sender.sendMessage("¡ìbStarTool > ¡ìcÄã±ØĞëÔÚÓÎÏ·ÄÚÊ¹ÓÃ¸ÃÃüÁî!");
-        }
+                        sender.sendMessage("æˆ‘ è¯… å’’ æˆ‘ è‡ª å·±");
+                    } else sender.sendMessage("Â§bStarTool > Â§cå‘ç”Ÿäº†æ„å¤–ä¹‹ä¸­çš„é”™è¯¯.");
+                    if (args.length == 1 && sender.hasPermission("startool.curse.other")) {
+                        Player otherp = Bukkit.getPlayer("args[0]");
+                           if (otherp == null) {
+                                sender.sendMessage("Â§bStarTool > Â§cè¿™åç©å®¶ä¸å­˜åœ¨/ä¸åœ¨çº¿!");
+                           }
+                           if (otherp == null && otherp.hasPermission("startool.curse.anticurse")) {
+                               sender.sendMessage("Â§bStarTool > Â§cè¿™åç©å®¶ä¸å­˜åœ¨/ä¸åœ¨çº¿/æ— æ³•è¯…å’’!");
+                           } else {
+                               otherp.setHealth(1);
+                               otherp.setFoodLevel(1);
+                               otherp.setWalkSpeed(0.25f);
+                               otherp.sendMessage("Â§bStarTool > Â§eä½ è¢«æŸåç©å®¶è¯…å’’äº†!");
+                               sender.sendMessage("Â§bStarTool > Â§eæˆåŠŸè¯…å’’äº† " + otherp.getName() + " !");
+                               return true;
+                            }
+                          } else sender.sendMessage("Â§bStarTool > Â§cä½ æ²¡æœ‰æƒé™!");
+                        } else sender.sendMessage("Â§bStarTool > Â§cä½ æ²¡æœ‰æƒé™!");
+                } else sender.sendMessage("Â§bStarTool > Â§cä½ å¿…é¡»åœ¨æ¸¸æˆå†…ä½¿ç”¨è¯¥å‘½ä»¤!");
+            }
         return false;
     }
 }

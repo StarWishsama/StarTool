@@ -12,7 +12,7 @@ public class StarToolCommand {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (cmd.getName().equalsIgnoreCase("startool")) {
                 if (args.length == 0) {
-                    sender.sendMessage("§bStarTool " + configsetup.Version + ", By StarWish_");
+                    sender.sendMessage("§bStarTool " + configsetup.Version + ", By StarWishsama");
                     sender.sendMessage("§f");
                     sender.sendMessage("/laba(/lb) [内容] 发送全服公告");
                     sender.sendMessage("/biu <玩家> 让一个玩家立即去世");
