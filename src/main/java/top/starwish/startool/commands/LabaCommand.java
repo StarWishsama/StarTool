@@ -6,8 +6,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import top.starwish.startool.config.Config;
 import top.starwish.startool.econemy.VaultLib;
-import top.starwish.startool.config.configsetup;
 
 public class LabaCommand implements CommandExecutor {
 
@@ -15,7 +15,7 @@ public class LabaCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("laba")) {
             if (sender instanceof Player) {
-                if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled() && !configsetup.EnableLaba) {
+                if (!Bukkit.getServer().getPluginManager().getPlugin("Vault").isEnabled() && !Config.DefaultEnableLaba) {
                     sender.sendMessage("§bStarTool > §c服务器未安装经济插件/或未启用小喇叭!");
                     if (sender.hasPermission("startool.laba.use")) {
                         if (args.length == 0) {
@@ -24,7 +24,7 @@ public class LabaCommand implements CommandExecutor {
                         }
                         if (args.length == 1) {
                             if (!sender.hasPermission("startool.laba.bypass")) {
-                                EconomyResponse s = VaultLib.getEconomy().bankWithdraw(sender.getName(), configsetup.LabaPrice);
+                                EconomyResponse s = VaultLib.getEconomy().bankWithdraw(sender.getName(), Config.DefaultLabaPrice);
                                 if (s.transactionSuccess()) {
                                     sender.sendMessage("§b你已成功发送了一条小喇叭!");
                                     Bukkit.broadcastMessage("§d§l" + sender.getName() + " §e§l说: " + args[0]);

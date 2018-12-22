@@ -9,9 +9,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import top.starwish.startool.listener.*;
 import top.starwish.startool.commands.*;
-import top.starwish.startool.config.configsetup;
+import top.starwish.startool.config.Config;
 
-public class StarToolStartUp extends JavaPlugin {
+public class StarToolStartup extends JavaPlugin {
 
     public void ConfigStartUp(){
         File config = new File(getDataFolder(), "config.yml");
@@ -53,7 +53,7 @@ public class StarToolStartUp extends JavaPlugin {
 
         //载入完成提示
         getLogger().info("StarTool  > 加载成功.");
-        getLogger().info("StarTool  > 欢迎使用 StarTool, 版本 " + configsetup.Version + ", 作者 StarWish");
+        getLogger().info("StarTool  > 欢迎使用 StarTool, 版本 " + Config.DefaultVersion + ", 作者 StarWish");
         getLogger().info( "StarTool  > 感谢您的使用!");
     }
 

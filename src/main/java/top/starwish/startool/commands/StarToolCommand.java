@@ -5,14 +5,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import top.starwish.startool.config.configsetup;
-import top.starwish.startool.startup.StarToolStartUp;
+import top.starwish.startool.config.Config;
 
 public class StarToolCommand {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (cmd.getName().equalsIgnoreCase("startool")) {
                 if (args.length == 0) {
-                    sender.sendMessage("§bStarTool " + configsetup.Version + ", By StarWishsama");
+                    sender.sendMessage("§bStarTool " + Config.DefaultVersion +", By StarWishsama");
                     sender.sendMessage("§f");
                     sender.sendMessage("/laba(/lb) [内容] 发送全服公告");
                     sender.sendMessage("/biu <玩家> 让一个玩家立即去世");
@@ -41,7 +40,7 @@ public class StarToolCommand {
                 }
 
                 if (args[0].equalsIgnoreCase("version")|| sender instanceof ConsoleCommandSender) {
-                    sender.sendMessage("§bStarTool > §e目前版本为: §a§n" + configsetup.Version);
+                    sender.sendMessage("§bStarTool > §e目前版本为: §a§n" + Config.DefaultVersion );
                     return true;
                 }
 
@@ -83,8 +82,7 @@ public class StarToolCommand {
 
             if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("startool.reload")) {
-                        configsetup.reloadConfig();
-                        sender.sendMessage("§bStarTool > §e重载完成.");
+                        Config.reloadConfig();
                         return true;
                     } else {
                         sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
