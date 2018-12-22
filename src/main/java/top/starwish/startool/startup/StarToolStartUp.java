@@ -4,8 +4,6 @@ import java.io.*;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 import top.starwish.startool.listener.*;
 import top.starwish.startool.commands.*;
@@ -15,8 +13,6 @@ public class StarToolStartup extends JavaPlugin {
 
     public void ConfigStartUp(){
         File config = new File(getDataFolder(), "config.yml");
-        FileConfiguration configchange = YamlConfiguration
-                .loadConfiguration(config);
         if (!config.exists()) {
             getConfig().options().copyDefaults(true);
             saveDefaultConfig();
