@@ -40,7 +40,7 @@ public class StarToolCommand {
                     }
                 }
 
-                if (args[0].equalsIgnoreCase("version")) {
+                if (args[0].equalsIgnoreCase("version")|| sender instanceof ConsoleCommandSender) {
                     sender.sendMessage("§bStarTool > §e目前版本为: §a§n" + configsetup.Version);
                     return true;
                 }
@@ -61,16 +61,15 @@ public class StarToolCommand {
                                         sender.sendMessage("§bStarTool > §c玩家名字错误或不存在!");
                                         return true;
                                     }
-                                    for (int i = 0; i <= 60; i++);
-                                    otherp.sendMessage("        ");
-                                    otherp.sendMessage("§bStarTool > §e您已被管理员清屏!");
-                                    sender.sendMessage("§bStarTool > §e成功为 §c" + otherp.getName() + " §e清屏!");
-                                    return true;
+                                    else {
+                                        for (int i = 0; i <= 60; i++) ;
+                                        otherp.sendMessage("        ");
+                                        otherp.sendMessage("§bStarTool > §e您已被管理员清屏!");
+                                        sender.sendMessage("§bStarTool > §e成功为 §c" + otherp.getName() + " §e清屏!");
+                                        return true;
+                                    }
                                 }
-                            } else {
-                                sender.sendMessage("§bStarTool > §c玩家名字错误或不存在!");
-                                return true;
-                            }
+                            } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
                         }
                     } else {
                         sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");

@@ -15,8 +15,8 @@ public class LevelUpTips implements Listener
         {
             return;
         }
-        player.sendTitle("¡ìe¡ìlÒ®! ¹§Ï²ÄãÉı¼¶ÁË!", "¡ìaµ±Ç°µÈ¼¶Îª: " + event.getNewLevel(), 50, 80, 50);
-        player.sendMessage("¡ìbStarTool > ¡ìe" + event.getPlayer().getName() + "¡ìe,¹§Ï²ÄãÉı¼¶ÖÁ " + event.getNewLevel() + "¡ìe¼¶!");
+        player.sendTitle("Â§eÂ§lè€¶! æ­å–œä½ å‡çº§äº†!", "Â§aå½“å‰ç­‰çº§ä¸º: " + event.getNewLevel(), 50, 80, 50);
+        player.sendMessage("Â§bStarTool > Â§e" + event.getPlayer().getName() + "Â§e,æ­å–œä½ å‡çº§è‡³ " + event.getNewLevel() + "Â§eçº§!");
         return;
     }
 }

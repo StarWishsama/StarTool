@@ -11,7 +11,7 @@ public class LevelChatPrefix implements Listener
     public void ChatLevel(AsyncPlayerChatEvent event)
     {
         if (configsetup.EnableChatPrefix) {
-            event.setFormat("¡ìf[¡ìe" + event.getPlayer().getLevel() + "¡ìe¼¶¡ìf]" + event.getFormat());
+            event.setFormat("Â§f[Â§e" + event.getPlayer().getLevel() + "Â§eçº§Â§f]" + event.getFormat());
         }
         else {
             event.setCancelled(true);

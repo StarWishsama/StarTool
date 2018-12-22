@@ -31,13 +31,6 @@ public class StarToolStartUp extends JavaPlugin {
         ConfigStartUp();
         getLogger().info("文件载入完成.");
 
-        //接入 Vault
-        getLogger().info("正在检查服务器是否安装 Vault...");
-        if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
-            getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
-        }
-        else getLogger().info("已发现 Vault 插件!");
-
         //注册监听器
         getLogger().info("正在加载监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
@@ -48,7 +41,14 @@ public class StarToolStartUp extends JavaPlugin {
         //注册命令
         getLogger().info("正在注册命令...");
         Bukkit.getPluginCommand("biu").setExecutor(new CurseCommand());
-        Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
+        getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
+        if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
+            getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
+        }
+        else {
+            Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
+            getLogger().info("已发现 Vault 插件!");
+        }
         getLogger().info("命令已注册.");
 
         //载入完成提示
