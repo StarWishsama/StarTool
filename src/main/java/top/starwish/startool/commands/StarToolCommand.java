@@ -2,19 +2,20 @@ package top.starwish.startool.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import top.starwish.startool.config.Config;
 
-public class StarToolCommand {
+public class StarToolCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (cmd.getName().equalsIgnoreCase("startool")) {
                 if (args.length == 0) {
                     sender.sendMessage("§bStarTool " + Config.DefaultVersion +", By StarWishsama");
                     sender.sendMessage("§f");
                     sender.sendMessage("/laba(/lb) [内容] 发送全服公告");
-                    sender.sendMessage("/biu <玩家> 让一个玩家立即去世");
+                    sender.sendMessage("/curse [玩家] 诅咒一名玩家(不能诅咒你自己)");
                     sender.sendMessage("/stool uuid 获取你的UUID");
                     sender.sendMessage("/stool clear <玩家> 清屏全服/玩家的聊天栏");
                     sender.sendMessage("/stool version 显示插件目前版本");

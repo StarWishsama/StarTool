@@ -2,6 +2,8 @@ package top.starwish.startool.startup;
 
 import java.io.*;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -13,6 +15,8 @@ public class StarToolStartup extends JavaPlugin {
 
     public void ConfigStartUp(){
         File config = new File(getDataFolder(), "config.yml");
+        FileConfiguration configchange = YamlConfiguration
+                .loadConfiguration(config);
         if (!config.exists()) {
             getConfig().options().copyDefaults(true);
             saveDefaultConfig();
@@ -36,7 +40,8 @@ public class StarToolStartup extends JavaPlugin {
 
         //注册命令
         getLogger().info("正在注册命令...");
-        Bukkit.getPluginCommand("biu").setExecutor(new CurseCommand());
+        Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
+        Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
             getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
