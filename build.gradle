@@ -1,5 +1,5 @@
 group 'top.starwish.startool'
-version '0.1.5-SNAPSHOT'
+version '0.1.5.4-SNAPSHOT'
 
 apply plugin: 'java'
 
