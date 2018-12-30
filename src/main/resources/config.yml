@@ -9,3 +9,5 @@ LabaPrice: 50
 EnableLaba: true
 # 是否将玩家等级作为前缀出现在聊天栏? (默认为true, 改为false以关闭)
 EnableLevelChatPrefix: true
+# 治愈诅咒的价格
+HealCursePrice: 120

@@ -7,6 +7,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import top.starwish.startool.setup.SPlayer;
+
 public class CurseCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player op = Bukkit.getPlayer(args[0]);
@@ -15,7 +17,7 @@ public class CurseCommand implements CommandExecutor {
             if (sender.hasPermission("startool.curse.use")){
                 if (args.length == 0) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c你不可以诅咒你自己!"));
-                    if (args.length == 1 && sender instanceof Player && op.isOnline()){
+                    if (args.length == 1 && sender instanceof Player && SPlayer.isExist(args[0])){
                         op.setHealth(1);
                         op.setFoodLevel(1);
                         op.setWalkSpeed(0.25f);
@@ -24,13 +26,12 @@ public class CurseCommand implements CommandExecutor {
                         if (op.hasPermission("startool.curse.anticurse")){
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c这名玩家无法诅咒!"));
                         }
-                    } else if (!op.isOnline() && op == null){
+                    } else {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c此玩家不在线!"));
                     }
-                    else sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c此玩家不在线!"));
 
-                    if (args.length ==1 && sender instanceof Player && args[0].equalsIgnoreCase("restore")){
-                        if (sender.hasPermission("startool.curse.restore")) {
+                    if (args.length ==1 && sender instanceof Player && args[0].equalsIgnoreCase("heal")){
+                        if (sender.hasPermission("startool.curse.heal")) {
                             Player p = (Player) sender;
                             p.setHealth(20);
                             p.setFoodLevel(10);

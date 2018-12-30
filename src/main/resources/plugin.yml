@@ -1,5 +1,5 @@
 name: StarTool
-main: top.starwish.startool.startup.StarToolStartup
+main: top.starwish.startool.setup.StarToolSetup
 version: 0.1.5.4-SNAPSHOT
 description: "一个简单实用的小插件"
 author: StarWish_Sama
@@ -24,8 +24,10 @@ permissions:
      default: op
    startool.curse.use:
      default: op
-   startool.curse.other:
+   startool.curse.anticurse:
      default: op
+   startool.curse.restore:
+     default: true
    startool.laba:
      default: true
    startool.laba.bypass:
