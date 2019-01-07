@@ -1,4 +1,4 @@
-package top.starwish.startool.listener;
+package top.starwish.startool.Listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,10 +10,10 @@ public class LevelUpTips implements Listener
     @EventHandler
     public void onLevelChange(PlayerLevelChangeEvent event)
     {
-        Player player = event.getPlayer();
+        Player p = event.getPlayer();
         if (event.getNewLevel() < event.getOldLevel()) return;
-        player.sendTitle("§e§l耶! 恭喜你升级了!", "§a当前等级为: " + event.getNewLevel(), 50, 80, 50);
-        player.sendMessage("§bStarTool > §e" + event.getPlayer().getName() + "§e,恭喜你升级至 " + event.getNewLevel() + "§e级!");
+        p.sendTitle("§e§l耶! 恭喜你升级了!", "§a当前等级为: " + event.getNewLevel(), 50, 80, 50);
+        p.sendMessage("§bStarTool > §e" + event.getPlayer().getName() + "§e,恭喜你升级至 " + event.getNewLevel() + "§e级!");
         return;
     }
 }

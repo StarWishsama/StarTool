@@ -1,4 +1,4 @@
-package top.starwish.startool.commands;
+package top.starwish.startool.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import top.starwish.startool.setup.SPlayer;
+import top.starwish.startool.Misc.SPlayer;
 
 public class CurseCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

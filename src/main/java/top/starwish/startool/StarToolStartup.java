@@ -1,4 +1,4 @@
-package top.starwish.startool.setup;
+package top.starwish.startool;
 
 import java.io.*;
 
@@ -7,19 +7,18 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
-import top.starwish.startool.listener.*;
-import top.starwish.startool.commands.*;
-import top.starwish.startool.config.Config;
+import top.starwish.startool.Listeners.*;
+import top.starwish.startool.Commands.*;
+import top.starwish.startool.Files.Config;
 
-public class StarToolSetup extends JavaPlugin {
-
+public class StarToolStartup extends JavaPlugin {
     public void ConfigStartUp(){
         File config = new File(getDataFolder(), "config.yml");
         FileConfiguration configchange = YamlConfiguration
                 .loadConfiguration(config);
         if (!config.exists()) {
             getConfig().options().copyDefaults(true);
-            saveDefaultConfig();
+            saveConfig();
             reloadConfig();
         }
     }
@@ -36,6 +35,7 @@ public class StarToolSetup extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
         Bukkit.getPluginManager().registerEvents(new ChatSendMyPos(), this);
+        Bukkit.getPluginManager().registerEvents(new AutoWelcome(), this);
         getLogger().info("监听器已加载.");
 
         //注册命令
@@ -54,7 +54,7 @@ public class StarToolSetup extends JavaPlugin {
 
         //载入完成提示
         getLogger().info("StarTool  > 加载成功.");
-        getLogger().info("StarTool  > 欢迎使用 StarTool, 版本 " + Config.DefaultVersion + ", 作者 StarWish");
+        getLogger().info("StarTool  > 欢迎使用 StarTool, 版本 " + Config.getVersion + ", 作者 StarWish");
         getLogger().info( "StarTool  > 感谢您的使用!");
     }
 

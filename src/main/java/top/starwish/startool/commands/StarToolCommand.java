@@ -1,4 +1,4 @@
-package top.starwish.startool.commands;
+package top.starwish.startool.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,14 +7,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import top.starwish.startool.config.Config;
-import top.starwish.startool.setup.SPlayer;
+import top.starwish.startool.Files.Config;
+import top.starwish.startool.Misc.SPlayer;
 
 public class StarToolCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
             if (cmd.getName().equalsIgnoreCase("startool")) {
                 if (args.length == 0) {
-                    sender.sendMessage("§bStarTool " + Config.DefaultVersion +", By StarWishsama");
+                    sender.sendMessage("§bStarTool " + Config.getVersion +", By StarWishsama");
                     sender.sendMessage("§f");
                     sender.sendMessage("/laba [内容] 发送全服公告");
                     sender.sendMessage("/curse [玩家] 诅咒一名玩家(不能诅咒你自己)");
@@ -37,7 +37,7 @@ public class StarToolCommand implements CommandExecutor {
                 }
 
                 if (args[0].equalsIgnoreCase("version")|| sender instanceof ConsoleCommandSender) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e目前版本: "+ Config.DefaultVersion));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e目前版本: "+ Config.getVersion));
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&bStarTool > &e服务端版本: " + Bukkit.getBukkitVersion()));
                     return true;
                 }
@@ -66,15 +66,14 @@ public class StarToolCommand implements CommandExecutor {
                                     }
                                 }
                             } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
-                        }
-                    } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
-                } else sender.sendMessage("§bStarTool > §e你必须在游戏内使用该命令!");
+                        } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                    } else sender.sendMessage("§bStarTool > §e你必须在游戏内使用该命令!");
+                }
             }
 
             if (args[0].equalsIgnoreCase("reload")) {
-                    if (sender.hasPermission("startool.reload")) {
-                        Config.reloadConfig();
-                    } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                    if (sender.hasPermission("startool.reload")) Config.reloadConfig();
+                    else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
             }
         return false;
         }

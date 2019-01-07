@@ -1,4 +1,4 @@
-package top.starwish.startool.setup;
+package top.starwish.startool.Misc;
 
 import org.bukkit.Bukkit;
 
