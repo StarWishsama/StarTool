@@ -28,7 +28,7 @@ public class StarToolCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("uuid")) {
                     if (sender instanceof Player) {
                         Player p = (Player) sender;
-                        if (!(sender.hasPermission("startool.uuid"))) {
+                        if (sender.hasPermission("startool.uuid")) {
                             sender.sendMessage("§bStarTool > §c正在获取您的UUID...");
                             sender.sendMessage("§bStarTool > §e你的UUID为:" + p.getUniqueId());
                             return true;
@@ -54,7 +54,7 @@ public class StarToolCommand implements CommandExecutor {
                             if (sender.hasPermission("startool.clearscreen.other")) {
                                 Player otherp = Bukkit.getPlayer(args[1]);
                                 if (args.length == 2) {
-                                    if (SPlayer.isnotExist(args[1])) {
+                                    if (!SPlayer.isExist(args[1])) {
                                         sender.sendMessage("§bStarTool > §c玩家名字错误或不存在!");
                                     }
                                     else {

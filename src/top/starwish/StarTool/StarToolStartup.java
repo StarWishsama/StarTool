@@ -42,6 +42,7 @@ public class StarToolStartup extends JavaPlugin {
         getLogger().info("正在注册命令...");
         Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
         Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
+        Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
             getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
@@ -53,9 +54,8 @@ public class StarToolStartup extends JavaPlugin {
         getLogger().info("命令已注册.");
 
         //载入完成提示
-        getLogger().info("StarTool  > 加载成功.");
-        getLogger().info("StarTool  > 欢迎使用 StarTool, 版本 " + Config.getVersion + ", 作者 StarWish");
-        getLogger().info( "StarTool  > 感谢您的使用!");
+        getLogger().info("加载成功.");
+        getLogger().info("欢迎使用 StarTool, 版本 " + Config.getVersion + ", 作者 StarWish");
     }
 
     @Override

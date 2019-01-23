@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>top.starwish</groupId>
     <artifactId>StarTool</artifactId>
-    <version>0.1.7.1-SNAPSHOT</version>
+    <version>0.1.7.2-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

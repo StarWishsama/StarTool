@@ -2,7 +2,7 @@
 # StarTool 配置文件 #
 #####################
 # 版本号, 不要修改
-Version: 0.1.6-SNAPSHOT
+Version: 0.1.7.2-SNAPSHOT
 # 使用 /laba 指令发送消息时需收取玩家多少费用? (默认为50游戏币)
 LabaPrice: 100
 # 是否启用小喇叭功能? 需要 Vault 插件作为前置 (默认为true, 改为false以关闭)
