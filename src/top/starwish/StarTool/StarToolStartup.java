@@ -1,33 +1,33 @@
 package top.starwish.StarTool;
 
-import java.io.*;
-
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
 import top.starwish.StarTool.Listeners.*;
 import top.starwish.StarTool.Commands.*;
-import top.starwish.StarTool.Files.Config;
 
 public class StarToolStartup extends JavaPlugin {
-    public void ConfigStartUp(){
-        File config = new File(getDataFolder(), "config.yml");
-        FileConfiguration configchange = YamlConfiguration
-                .loadConfiguration(config);
-        if (!config.exists()) {
-            getConfig().options().copyDefaults(true);
-            saveConfig();
-            reloadConfig();
-        }
+    private static StarToolStartup instance;
+
+    static Plugin plugin;
+
+    public static StarToolStartup getInstance() {
+        return instance;
+    }
+
+    public void SetupConfig(){
+        FileConfiguration config = plugin.getConfig();
+        config.options().copyDefaults(true);
+        plugin.saveConfig();
     }
 
     @Override
     public void onEnable() {
         //加载文件
         getLogger().info("正在加载文件...");
-        ConfigStartUp();
+        SetupConfig();
         getLogger().info("文件载入完成.");
 
         //注册监听器
@@ -36,6 +36,7 @@ public class StarToolStartup extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
         Bukkit.getPluginManager().registerEvents(new ChatSendMyPos(), this);
         Bukkit.getPluginManager().registerEvents(new AutoWelcome(), this);
+        Bukkit.getPluginManager().registerEvents(new StarToolCommand(), this);
         getLogger().info("监听器已加载.");
 
         //注册命令
@@ -55,7 +56,7 @@ public class StarToolStartup extends JavaPlugin {
 
         //载入完成提示
         getLogger().info("加载成功.");
-        getLogger().info("欢迎使用 StarTool, 版本 " + Config.getVersion + ", 作者 StarWish");
+        getLogger().info("欢迎使用 StarTool, 版本 " + getDescription().getVersion() + ", 作者 StarWish");
     }
 
     @Override
