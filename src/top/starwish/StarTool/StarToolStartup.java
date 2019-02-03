@@ -1,7 +1,5 @@
 package top.starwish.StarTool;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -11,36 +9,21 @@ import top.starwish.StarTool.Commands.*;
 public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
 
-    static Plugin plugin;
-
-    public static StarToolStartup getInstance() {
-        return instance;
-    }
-
-    public void SetupConfig(){
-        FileConfiguration config = plugin.getConfig();
-        config.options().copyDefaults(true);
-        plugin.saveConfig();
+    @Override
+    public void onLoad() {
+        instance = this;
     }
 
     @Override
     public void onEnable() {
-        //加载文件
-        getLogger().info("正在加载文件...");
-        SetupConfig();
-        getLogger().info("文件载入完成.");
+        saveDefaultConfig();
 
-        //注册监听器
-        getLogger().info("正在加载监听器...");
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
         Bukkit.getPluginManager().registerEvents(new ChatSendMyPos(), this);
         Bukkit.getPluginManager().registerEvents(new AutoWelcome(), this);
-        Bukkit.getPluginManager().registerEvents(new StarToolCommand(), this);
-        getLogger().info("监听器已加载.");
+        Bukkit.getPluginManager().registerEvents(new CommandHandler(), this);
 
-        //注册命令
-        getLogger().info("正在注册命令...");
         Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
         Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
         Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
@@ -52,17 +35,18 @@ public class StarToolStartup extends JavaPlugin {
             Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
             getLogger().info("已发现 Vault 插件!");
         }
-        getLogger().info("命令已注册.");
 
-        //载入完成提示
-        getLogger().info("加载成功.");
-        getLogger().info("欢迎使用 StarTool, 版本 " + getDescription().getVersion() + ", 作者 StarWish");
+        getLogger().info("欢迎使用 StarTool, 版本 " + getDescription().getVersion());
     }
 
     @Override
     public void onDisable() {
         Bukkit.getScheduler().cancelTasks(this);
-        getLogger().info("StarTool > 正在关闭插件...");
+        getLogger().info("正在关闭插件...");
         saveDefaultConfig();
+    }
+
+    public static StarToolStartup getInstance() {
+        return instance;
     }
 }

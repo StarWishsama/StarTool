@@ -8,7 +8,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 public class ChatSendMyPos implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
-           if (e.getMessage().equalsIgnoreCase("pos")) {
+           if (e.getMessage().equalsIgnoreCase("#pos")) {
                Location l = e.getPlayer().getLocation();
                int X = (int)l.getX();
                int Y = (int)l.getY();

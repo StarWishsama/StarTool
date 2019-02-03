@@ -16,7 +16,8 @@ public class GcCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a操作系统: " + ServerInfo.getOsName()));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&aJVM 版本:" + ServerInfo.getJVMVersion()));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e内存使用情况: " + ServerInfo.getUsedMemory() + "MB/" + ServerInfo.getTotalMemorySize() + "MB"));
-            } else sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c你没有权限来执行这条命令!"));
+            }
+            else sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &c你没有权限来执行这条命令!"));
         } return true;
     }
 }
