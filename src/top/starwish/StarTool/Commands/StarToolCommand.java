@@ -9,8 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import top.starwish.StarTool.StarToolStartup;
-import top.starwish.StarTool.Utils.SPlayer;
-import top.starwish.StarTool.Utils.TTC;
+import top.starwish.StarTool.Utils.Utils;
 
 public class StarToolCommand implements CommandExecutor {
 
@@ -61,13 +60,13 @@ public class StarToolCommand implements CommandExecutor {
                                 if (sender.hasPermission("startool.clearscreen.other") || sender instanceof ConsoleCommandSender) {
                                         Player otherp = Bukkit.getPlayer(args[1]);
                                         if (args.length == 2) {
-                                            if (SPlayer.isExist(args[1])) {
+                                            if (Utils.isExist(args[1])) {
                                                 for (int i = 0; i <= 60; i++) ;
                                                 otherp.sendMessage("        ");
                                                 otherp.sendMessage("§bStarTool > §e您已被管理员清屏!");
                                                 sender.sendMessage("§bStarTool > §e成功为 §c" + otherp.getName() + " §e清屏!");
                                                 return true;
-                                        } else sender.sendMessage(TTC.color("&bStarTool > &c玩家不在线!"));
+                                        } else sender.sendMessage(Utils.color("&bStarTool > &c玩家不在线!"));
                                     } else sender.sendMessage("§bStarTool > §e你必须在游戏内使用该命令!");
                                 } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
                             } else sender.sendMessage("§bStarTool > §c执行命令时发生了错误");
@@ -82,7 +81,7 @@ public class StarToolCommand implements CommandExecutor {
                 else return true;
             }
             else {
-                sender.sendMessage(TTC.color("&bStarTool > &r请使用 /startool 获取帮助."));
+                sender.sendMessage(Utils.color("&bStarTool > &r请使用 /startool 获取帮助."));
             }
         } return true;
     }

@@ -1,5 +1,6 @@
 package top.starwish.StarTool.Commands;
 
+import org.apache.commons.lang.StringUtils;
 import top.starwish.StarTool.PluginHook.Vault;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
@@ -8,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import top.starwish.StarTool.StarToolStartup;
-import top.starwish.StarTool.Utils.TTC;
+import top.starwish.StarTool.Utils.Utils;
 
 public class LabaCommand implements CommandExecutor {
     @SuppressWarnings("deprecation")
@@ -17,9 +18,9 @@ public class LabaCommand implements CommandExecutor {
         if (StarToolStartup.getInstance().getConfig().getBoolean("EnableLaba")){
             if (sender.hasPermission("startool.laba.use")|| sender.isOp()) {
                 if (args.length == 0){
-                    sender.sendMessage(TTC.color("&bStarTool > &e/laba <内容>"));
-                    sender.sendMessage(TTC.color("&bStarTool > &e或者 /laba title <主标题> [副标题]"));
-                    sender.sendMessage(TTC.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
+                    sender.sendMessage(Utils.color("&bStarTool > &e/laba <内容>"));
+                    sender.sendMessage(Utils.color("&bStarTool > &e或者 /laba title <主标题> [副标题]"));
+                    sender.sendMessage(Utils.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
                 }
                 else if (args.length >= 1){
                     if (!args[0].equalsIgnoreCase("title")){
@@ -27,11 +28,11 @@ public class LabaCommand implements CommandExecutor {
                             EconomyResponse s = Vault.getEconomy().bankWithdraw(sender.getName(), StarToolStartup.getInstance().getConfig().getInt("LabaPrice"));
                             if (s.transactionSuccess()) {
                                 sender.sendMessage("§b你已成功发送了一条小喇叭!");
-                                Bukkit.broadcastMessage(TTC.color("&b" + sender.getName() + " &e说: " + args[0]));
-                            } else sender.sendMessage(TTC.color("§b StarTool §c> 你没有足够的金钱!"));
+                                Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + args[0]));
+                            } else sender.sendMessage(Utils.color("§b StarTool §c> 你没有足够的金钱!"));
                         } else {
                             sender.sendMessage("§b由于你与服主完成了某种交易, 本次发送无需费用!");
-                            Bukkit.broadcastMessage(TTC.color("&b" + sender.getName() + " &e说: " + args[0]));
+                            Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + args[0]));
                         }
                     }
                     else if (args[0].equalsIgnoreCase("title")){
@@ -46,23 +47,36 @@ public class LabaCommand implements CommandExecutor {
 
                             String title = args[1].replaceAll("\\_", " ");
                             String subtitle = args[2].replaceAll("\\_", " ");
+                            Integer fadeIn = Integer.parseInt(args[3]);
+                            Integer stay = Integer.parseInt(args[4]);
+                            Integer fadeOut = Integer.parseInt(args[5]);
 
                             if (args.length == 2) {
-                                StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(TTC.color(title), ""));
-                                sender.sendMessage(TTC.color("&bStarTool > &e发送成功."));
-                            } else if (args.length == 3) {
-                                StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(TTC.color(title), TTC.color(subtitle)));
-                                sender.sendMessage(TTC.color("&bStarTool > &e发送成功."));
-                            } else sender.sendMessage(TTC.color("&bStarTool > &c输入了错误的参数!"));
+                                StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), ""));
+                                sender.sendMessage(Utils.color("&bStarTool > &e发送成功."));
+                            }
+                            else if (args.length == 3) {
+                                    StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), Utils.color(subtitle)));
+                                    sender.sendMessage(Utils.color("&bStarTool > &e发送成功."));
+                            }
+                            else if (args.length >= 4) {
+                                if (StringUtils.isNumeric(args[3]) && StringUtils.isNumeric(args[4]) && StringUtils.isNumeric(args[5])){
+                                    StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), Utils.color(subtitle), fadeIn, stay, fadeOut));
+                                    sender.sendMessage(Utils.color("&bStarTool > &e发送成功."));
+                                } else {
+                                    sender.sendMessage(Utils.color("&bStarTool > &c输入了错误的参数!"));
+                                }
+                            }
+                            else sender.sendMessage(Utils.color("&bStarTool > &c输入了错误的参数!"));
                         } else {
-                            sender.sendMessage(TTC.color("&bStarTool > &e/laba title <主标题> [副标题]"));
-                            sender.sendMessage(TTC.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
+                            sender.sendMessage(Utils.color("&bStarTool > &e/laba title <主标题> [副标题]"));
+                            sender.sendMessage(Utils.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
                         }
                     }
                     else {
-                        sender.sendMessage(TTC.color("&bStarTool > &e/laba <内容>"));
-                        sender.sendMessage(TTC.color("&bStarTool > &e或者 /laba title <主标题> [副标题]"));
-                        sender.sendMessage(TTC.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
+                        sender.sendMessage(Utils.color("&bStarTool > &e/laba <内容>"));
+                        sender.sendMessage(Utils.color("&bStarTool > &e或者 /laba title <主标题> [副标题]"));
+                        sender.sendMessage(Utils.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
                     }
                 }
             } else sender.sendMessage("§bStarTool §c> 你没有权限!");
