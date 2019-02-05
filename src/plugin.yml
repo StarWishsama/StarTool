@@ -1,6 +1,6 @@
 name: StarTool
 main: top.starwish.StarTool.StarToolStartup
-version: 0.1.8.2-SNAPSHOT
+version: 0.1.9-SNAPSHOT
 description: "一个简单实用的小插件"
 author: StarWish_Sama
 api-version: 1.13
@@ -17,6 +17,10 @@ commands:
      aliases: [lb]
    gc:
      description: "显示服务器信息"
+   tp:
+     aliases: [teleport]
+   tpa:
+     description: "传送到其他玩家(需要其他玩家同意)"
 permissions:
    startool.uuid:
      default: op
@@ -39,4 +43,8 @@ permissions:
    startool.commands.reload:
      default: op
    startool.commands.version:
+     default: true
+   startool.commands.teleport:
+     default: op
+   startool.commands.teleport.tpa:
      default: true

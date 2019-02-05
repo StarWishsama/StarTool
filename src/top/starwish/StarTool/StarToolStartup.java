@@ -27,6 +27,9 @@ public class StarToolStartup extends JavaPlugin {
         Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
         Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
         Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
+        Bukkit.getPluginCommand("tp").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("tpa").setExecutor(new TeleportCommand());
+
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
             getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");

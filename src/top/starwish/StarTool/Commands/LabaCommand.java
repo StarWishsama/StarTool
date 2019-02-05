@@ -47,9 +47,7 @@ public class LabaCommand implements CommandExecutor {
 
                             String title = args[1].replaceAll("\\_", " ");
                             String subtitle = args[2].replaceAll("\\_", " ");
-                            Integer fadeIn = Integer.parseInt(args[3]);
-                            Integer stay = Integer.parseInt(args[4]);
-                            Integer fadeOut = Integer.parseInt(args[5]);
+
 
                             if (args.length == 2) {
                                 StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), ""));
@@ -61,6 +59,9 @@ public class LabaCommand implements CommandExecutor {
                             }
                             else if (args.length >= 4) {
                                 if (StringUtils.isNumeric(args[3]) && StringUtils.isNumeric(args[4]) && StringUtils.isNumeric(args[5])){
+                                    Integer fadeIn = Integer.parseInt(args[3]);
+                                    Integer stay = Integer.parseInt(args[4]);
+                                    Integer fadeOut = Integer.parseInt(args[5]);
                                     StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), Utils.color(subtitle), fadeIn, stay, fadeOut));
                                     sender.sendMessage(Utils.color("&bStarTool > &e发送成功."));
                                 } else {
