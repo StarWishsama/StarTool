@@ -3,6 +3,7 @@ package top.starwish.StarTool;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
+import top.starwish.StarTool.CheckUpdate.CheckUpdate;
 import top.starwish.StarTool.Listeners.*;
 import top.starwish.StarTool.Commands.*;
 
@@ -40,6 +41,7 @@ public class StarToolStartup extends JavaPlugin {
         }
 
         getLogger().info("欢迎使用 StarTool, 版本 " + getDescription().getVersion());
+        CheckUpdate.CheckUpdate();
     }
 
     @Override

@@ -6,9 +6,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import top.starwish.StarTool.Utils.Utils;
 
-public class TeleportCommand implements CommandExecutor {
+public class TeleportCommand implements CommandExecutor, Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         if (cmd.getName().equalsIgnoreCase("tp")){
@@ -47,5 +50,16 @@ public class TeleportCommand implements CommandExecutor {
         }
         else sender.sendMessage(Utils.color("&bStarTool > &c请检查命令是否有误."));
         return true;
+    }
+    @EventHandler
+    public void getAcceptStatus(PlayerCommandPreprocessEvent e){
+        if (e.getMessage().equalsIgnoreCase("/tpaccept")){
+            if (e.getPlayer().getName().equalsIgnoreCase("test")){
+
+            }
+        }
+        else if (e.getMessage().equalsIgnoreCase("/tpdeny")){
+
+        }
     }
 }
