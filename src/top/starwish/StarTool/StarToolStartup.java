@@ -1,5 +1,7 @@
 package top.starwish.StarTool;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -7,17 +9,25 @@ import top.starwish.StarTool.CheckUpdate.UpdateChecker;
 import top.starwish.StarTool.Listeners.*;
 import top.starwish.StarTool.Commands.*;
 
+import java.io.File;
+
 public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
+    private File Message;
 
     @Override
     public void onLoad() {
         instance = this;
+        Message = new File(getDataFolder(), "messages.yml");
     }
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        FileConfiguration file = YamlConfiguration.loadConfiguration(Message);
+        if (!Message.exists()){
+            Message.mkdirs();
+        }
 
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
