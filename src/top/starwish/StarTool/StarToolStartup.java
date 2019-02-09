@@ -3,7 +3,7 @@ package top.starwish.StarTool;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
-import top.starwish.StarTool.CheckUpdate.CheckUpdate;
+import top.starwish.StarTool.CheckUpdate.UpdateChecker;
 import top.starwish.StarTool.Listeners.*;
 import top.starwish.StarTool.Commands.*;
 
@@ -29,7 +29,10 @@ public class StarToolStartup extends JavaPlugin {
         Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
         Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
         Bukkit.getPluginCommand("tp").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("tphere").setExecutor(new TeleportCommand());
         Bukkit.getPluginCommand("tpa").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("home").setExecutor(new HomeCommand());
+        Bukkit.getPluginCommand("gm").setExecutor(new GameModeCommand());
 
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
@@ -41,7 +44,7 @@ public class StarToolStartup extends JavaPlugin {
         }
 
         getLogger().info("欢迎使用 StarTool, 版本 " + getDescription().getVersion());
-        CheckUpdate.CheckUpdate();
+        UpdateChecker.CheckUpdate();
     }
 
     @Override

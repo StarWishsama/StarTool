@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class CheckUpdate {
+public class UpdateChecker {
     public static String getLatestVer(){
         String version = null;
         try {
@@ -37,8 +37,7 @@ public class CheckUpdate {
             public void run(){
                 if(isLatest()){
                     Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e您当前正在使用最新版本!"));
-                }
-                else Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e新版本 " + getLatestVer() +""));
+                } else Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e新版本 " + getLatestVer() +" 已发布, 请至 Github Releases 界面下载."));
             }
         }.runTaskAsynchronously(StarToolStartup.getInstance());
     }

@@ -48,7 +48,6 @@ public class LabaCommand implements CommandExecutor {
                             String title = args[1].replaceAll("\\_", " ");
                             String subtitle = args[2].replaceAll("\\_", " ");
 
-
                             if (args.length == 2) {
                                 StarToolStartup.getInstance().getServer().getOnlinePlayers().forEach((Player a) -> a.sendTitle(Utils.color(title), ""));
                                 sender.sendMessage(Utils.color("&bStarTool > &e发送成功."));

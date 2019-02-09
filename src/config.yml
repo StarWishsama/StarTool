@@ -12,6 +12,6 @@ HealCursePrice: 120
 # 自动转换为当前坐标的关键字
 PosText: pos
 # 是否启用聊天发送坐标
-PosTranlate: true
+PosTranslate: true
 # 玩家加入服务器时发送的文字
 PlayerJoinMessage: "&b欢迎来到服务器!"

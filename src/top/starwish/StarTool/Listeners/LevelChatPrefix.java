@@ -4,11 +4,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class LevelChatPrefix implements Listener
-{
+public class LevelChatPrefix implements Listener {
     @EventHandler
-    public void ChatLevel(AsyncPlayerChatEvent event)
-    {
+    public void ChatLevel(AsyncPlayerChatEvent event) {
         // From @StivenDing
             String WorldName = event.getPlayer().getWorld().getName();
             String PlayerName = event.getPlayer().getName();
