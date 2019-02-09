@@ -15,7 +15,7 @@ import top.starwish.StarTool.Utils.Utils;
 public class StarToolCommand implements CommandExecutor {
 
     String Version = StarToolStartup.getInstance().getDescription().getVersion();
-
+    @SuppressWarnings("deprecation")
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("startool")){
             if (args.length == 0){
@@ -38,8 +38,8 @@ public class StarToolCommand implements CommandExecutor {
                         if (sender.hasPermission("startool.uuid")) {
                             sender.sendMessage("§bStarTool > §c正在获取您的UUID...");
                             sender.sendMessage("§bStarTool > §e你的UUID为:" + p.getUniqueId());
-                        } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
-                    } else sender.sendMessage("§bStarTool > §c你必须是一个玩家!");
+                        } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+                    } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.not-a-player")));
                 }
                 else if (args[0].equalsIgnoreCase("version")) {
                     if (sender instanceof ConsoleCommandSender || sender.hasPermission("startool.commands.version")) {
@@ -51,7 +51,7 @@ public class StarToolCommand implements CommandExecutor {
                             sender.sendMessage(Utils.color("&bStarTool > &r你目前使用的不是最新版本! 最新版本为 "+ UpdateChecker.getLatestVer()));
                             sender.sendMessage(Utils.color("&bStarTool > &r请至 https://github.com/StarWishsama/StarTool/releases 下载最新版!"));
                         }
-                    } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                    } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
                 }
 
                 else if (args[0].equalsIgnoreCase("clear")) {
@@ -74,15 +74,15 @@ public class StarToolCommand implements CommandExecutor {
                                         return true;
                                     } else sender.sendMessage(Utils.color("&bStarTool > &c玩家不在线!"));
                                 } else sender.sendMessage("§bStarTool > §c执行命令时发生了错误");
-                            } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
                         } else sender.sendMessage("§bStarTool > §c执行命令时发生了错误");
-                    } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                    } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
                 }
                 else if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("startool.commands.reload") || sender instanceof ConsoleCommandSender){
                         StarToolStartup.getInstance().reloadConfig();
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e重载完成."));
-                    } else sender.sendMessage("§bStarTool > §c你没有权限来执行这条命令!");
+                    } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
                 } else return true;
             } else sender.sendMessage(Utils.color("&bStarTool > &r请使用 /startool 获取帮助."));
         } return true;

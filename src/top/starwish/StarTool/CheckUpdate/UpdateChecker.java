@@ -14,7 +14,7 @@ public class UpdateChecker {
     public static String getLatestVer(){
         String version = null;
         try {
-            URL url = new URL("https://raw.githubusercontent.com/StarWishsama/StarTool/master/UpdateCheck.txt");
+            URL url = new URL("https://raw.githubusercontent.com/StarWishsama/StarTool/master/Version.txt");
             InputStream a = url.openStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(a, "UTF-8"));
             version = br.readLine();

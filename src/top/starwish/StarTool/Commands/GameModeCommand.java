@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.Utils;
 
 public class GameModeCommand implements CommandExecutor {
@@ -33,7 +34,7 @@ public class GameModeCommand implements CommandExecutor {
                             break;
                     }
                 } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
-            } else sender.sendMessage(Utils.color("&bStarTool > &rYou must be a player!"));
+            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.not-a-player")));
         } return true;
     }
 }

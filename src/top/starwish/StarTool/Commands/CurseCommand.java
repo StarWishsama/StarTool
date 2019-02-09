@@ -1,6 +1,7 @@
 package top.starwish.StarTool.Commands;
 
 import org.bukkit.entity.Player;
+import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -24,10 +25,10 @@ public class CurseCommand implements CommandExecutor {
                                     op.sendMessage(Utils.color("&bStarTool > &e你被诅咒了!"));
                                     sender.sendMessage(Utils.color("&bStarTool > &e成功诅咒了 " + op.getName() + " !"));
                                 } else sender.sendMessage(Utils.color("&bStarTool > &c你不能诅咒你自己!"));
-                            } else sender.sendMessage(Utils.color("&bStarTool > &c你没有权限!"));
+                            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
                         } else sender.sendMessage(Utils.color("&bStarTool > &c这名玩家不存在!"));
                 } else sender.sendMessage(Utils.color("&bStarTool > &e用法: /curse <玩家名>"));
-            } else sender.sendMessage(Utils.color("&bStarTool > &c你没有权限!"));
+            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
         } return true;
     }
 }

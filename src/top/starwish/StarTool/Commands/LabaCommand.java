@@ -79,7 +79,7 @@ public class LabaCommand implements CommandExecutor {
                         sender.sendMessage(Utils.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
                     }
                 }
-            } else sender.sendMessage("§bStarTool §c> 你没有权限!");
+            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
         } else sender.sendMessage("§bStarTool > §c服务器未启用小喇叭!");
         return true;
     }

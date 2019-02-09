@@ -7,12 +7,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.Utils;
 
 // WIP
 public class TeleportCommand implements CommandExecutor {
-    public static Boolean sendStatus;
-
+    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("tp")) {
@@ -45,7 +45,7 @@ public class TeleportCommand implements CommandExecutor {
                         else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp [玩家名字] <x> <y> <z>"));
                     }
                     else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp <玩家名字>"));
-                } else sender.sendMessage(Utils.color("&bStarTool > &c你没有权限!"));
+                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else if (cmd.getName().equalsIgnoreCase("tphere")) {
             if (sender instanceof Player) {
@@ -60,7 +60,7 @@ public class TeleportCommand implements CommandExecutor {
                             } else sender.sendMessage("You can't tphere yourself!");
                         } else sender.sendMessage(Utils.color("&bStarTool > &c该玩家不在线或不存在!"));
                     } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /tphere <Player>"));
-                } else sender.sendMessage(Utils.color("&bStarTool > &c你没有权限!"));
+                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else if (cmd.getName().equalsIgnoreCase("tpa")) {
             if (sender instanceof Player) {
@@ -76,10 +76,9 @@ public class TeleportCommand implements CommandExecutor {
                             op.sendMessage(Utils.color("&a输入 /tpaccept 以接受传送请求"));
                             op.sendMessage(Utils.color("&c输入 /tpdeny 以拒绝传送请求"));
                             op.sendMessage(Utils.color(""));
-                            sendStatus = Boolean.valueOf(true);
                         } else sender.sendMessage(Utils.color("&bStarTool > &c该玩家不在线或不存在!"));
                     } else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tpa <玩家名字>"));
-                } else sender.sendMessage(Utils.color("&bStarTool > &c你没有权限!"));
+                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else {
             sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp <玩家名字>"));

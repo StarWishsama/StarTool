@@ -15,3 +15,14 @@ PosText: pos
 PosTranslate: true
 # 玩家加入服务器时发送的文字
 PlayerJoinMessage: "&b欢迎来到服务器!"
+
+###############################
+#                             #
+#            信息             #
+#                             #
+###############################
+prefix: "&bStarTool >&r "
+messages:
+  usage: "&c用法:"
+  not-a-player: "&c你必须是一个在游戏内的玩家!"
+  no-permission: "&c你没有权限!"
