@@ -6,6 +6,12 @@ import org.bukkit.Bukkit;
 import top.starwish.StarTool.CheckUpdate.UpdateChecker;
 import top.starwish.StarTool.Listeners.*;
 import top.starwish.StarTool.Commands.*;
+import top.starwish.StarTool.Listeners.AutoWelcome;
+import top.starwish.StarTool.Listeners.ChatSendMyPos;
+import top.starwish.StarTool.Listeners.LevelChatPrefix;
+import top.starwish.StarTool.Listeners.LevelUpTips;
+
+import java.io.File;
 
 public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
@@ -18,6 +24,10 @@ public class StarToolStartup extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+        File config = new File(getDataFolder(), "config.yml");
+        if (!config.exists()){
+            config.mkdirs();
+        }
 
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);

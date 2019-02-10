@@ -36,20 +36,20 @@ public class StarToolCommand implements CommandExecutor {
                     if (sender instanceof Player) {
                         Player p = (Player) sender;
                         if (sender.hasPermission("startool.uuid")) {
-                            sender.sendMessage("§bStarTool > §c正在获取您的UUID...");
-                            sender.sendMessage("§bStarTool > §e你的UUID为:" + p.getUniqueId());
+                            sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§c正在获取您的UUID...");
+                            sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§e你的UUID为:" + p.getUniqueId());
                         } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
-                    } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.not-a-player")));
+                    } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + Utils.getCfg().getString("messages.not-a-player")));
                 }
                 else if (args[0].equalsIgnoreCase("version")) {
                     if (sender instanceof ConsoleCommandSender || sender.hasPermission("startool.commands.version")) {
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e目前版本: " + Version));
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e服务端版本: " + Bukkit.getBukkitVersion()));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Utils.getCfg().getString("messages.prefix") + "&e目前版本: " + Version));
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Utils.getCfg().getString("messages.prefix") + "&e服务端版本: " + Bukkit.getBukkitVersion()));
                         if (UpdateChecker.isLatest()){
-                            sender.sendMessage(Utils.color("&bStarTool > &r你当前正在使用最新版本 " + StarToolStartup.getInstance().getDescription().getVersion()));
+                            sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + "&r你当前正在使用最新版本 " + StarToolStartup.getInstance().getDescription().getVersion()));
                         } else {
-                            sender.sendMessage(Utils.color("&bStarTool > &r你目前使用的不是最新版本! 最新版本为 "+ UpdateChecker.getLatestVer()));
-                            sender.sendMessage(Utils.color("&bStarTool > &r请至 https://github.com/StarWishsama/StarTool/releases 下载最新版!"));
+                            sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + "&r你目前使用的不是最新版本! 最新版本为 "+ UpdateChecker.getLatestVer()));
+                            sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + "&r请至 https://github.com/StarWishsama/StarTool/releases 下载最新版!"));
                         }
                     } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
                 }
@@ -59,7 +59,7 @@ public class StarToolCommand implements CommandExecutor {
                         if (args.length == 1) {
                             for (int i = 0; i <= 60; i++)
                                 Bukkit.broadcastMessage("       ");
-                            sender.sendMessage("§bStarTool > §e全服清屏成功~");
+                            sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§e全服清屏成功~");
                             return true;
                         }
                         else if (args.length >= 2) {
@@ -69,22 +69,22 @@ public class StarToolCommand implements CommandExecutor {
                                     if (Utils.isExist(args[1])) {
                                         for (int i = 0; i <= 60; i++) ;
                                         otherp.sendMessage("        ");
-                                        otherp.sendMessage("§bStarTool > §e您已被管理员清屏!");
-                                        sender.sendMessage("§bStarTool > §e成功为 §c" + otherp.getName() + " §e清屏!");
+                                        otherp.sendMessage(Utils.getCfg().getString("messages.prefix") + "§e您已被管理员清屏!");
+                                        sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§e成功为 §c" + otherp.getName() + " §e清屏!");
                                         return true;
-                                    } else sender.sendMessage(Utils.color("&bStarTool > &c玩家不在线!"));
-                                } else sender.sendMessage("§bStarTool > §c执行命令时发生了错误");
+                                    } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + "&c玩家不在线!"));
+                                } else sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§c执行命令时发生了错误");
                             } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
-                        } else sender.sendMessage("§bStarTool > §c执行命令时发生了错误");
+                        } else sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§c执行命令时发生了错误");
                     } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
                 }
                 else if (args[0].equalsIgnoreCase("reload")) {
                     if (sender.hasPermission("startool.commands.reload") || sender instanceof ConsoleCommandSender){
                         StarToolStartup.getInstance().reloadConfig();
-                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bStarTool > &e重载完成."));
-                    } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
+                        sender.sendMessage(Utils.color( Utils.getCfg().getString("messages.prefix") + "&e重载完成."));
+                    } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + Utils.getCfg().getString("messages.no-permission")));
                 } else return true;
-            } else sender.sendMessage(Utils.color("&bStarTool > &r请使用 /startool 获取帮助."));
+            } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.prefix") + "&r请使用 /startool 获取帮助."));
         } return true;
     }
 }
