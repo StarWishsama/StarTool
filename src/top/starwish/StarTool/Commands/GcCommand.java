@@ -18,7 +18,7 @@ public class GcCommand implements CommandExecutor {
                 sender.sendMessage(Utils.color("&aJVM 版本:" + ServerInfo.getJVMVersion()));
                 sender.sendMessage(Utils.color("&e内存使用情况: " + ServerInfo.getUsedMemory() + "MB/" + ServerInfo.getTotalMemorySize() + "MB"));
             }
-            else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+            else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
         } return true;
     }
 }

@@ -1,8 +1,10 @@
 package top.starwish.StarTool.Listeners;
 
+import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import top.starwish.StarTool.Utils.Utils;
 
 public class LevelChatPrefix implements Listener {
     @EventHandler
@@ -22,7 +24,6 @@ public class LevelChatPrefix implements Listener {
                 WorldName = "末地";
             }
             else WorldName = event.getPlayer().getWorld().getName();
-
-            event.setFormat("§a" + WorldName + "§f " + PlayerName + " > " + SentMessage);
+            event.setFormat(Utils.color(WorldName + "&f" + PlayerName + " > " + SentMessage));
     }
 }

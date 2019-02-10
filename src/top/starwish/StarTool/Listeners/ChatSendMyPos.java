@@ -5,11 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import top.starwish.StarTool.StarToolStartup;
+import top.starwish.StarTool.Utils.Utils;
 
 public class ChatSendMyPos implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
-        if (StarToolStartup.getInstance().getConfig().getBoolean("PosTranslate")) {
+        if (Utils.getCfg().getBoolean("PosTranslate")) {
             if (e.getMessage().equalsIgnoreCase(StarToolStartup.getInstance().getConfig().getString("PosText"))) {
                 Location l = e.getPlayer().getLocation();
                 int X = (int) l.getX();

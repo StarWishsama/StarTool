@@ -34,7 +34,7 @@ public class GameModeCommand implements CommandExecutor {
                             break;
                     }
                 } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
-            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.not-a-player")));
+            } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.not-a-player")));
         } return true;
     }
 }

@@ -45,7 +45,7 @@ public class TeleportCommand implements CommandExecutor {
                         else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp [玩家名字] <x> <y> <z>"));
                     }
                     else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp <玩家名字>"));
-                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+                } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else if (cmd.getName().equalsIgnoreCase("tphere")) {
             if (sender instanceof Player) {
@@ -60,7 +60,7 @@ public class TeleportCommand implements CommandExecutor {
                             } else sender.sendMessage("You can't tphere yourself!");
                         } else sender.sendMessage(Utils.color("&bStarTool > &c该玩家不在线或不存在!"));
                     } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /tphere <Player>"));
-                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+                } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else if (cmd.getName().equalsIgnoreCase("tpa")) {
             if (sender instanceof Player) {
@@ -78,7 +78,7 @@ public class TeleportCommand implements CommandExecutor {
                             op.sendMessage(Utils.color(""));
                         } else sender.sendMessage(Utils.color("&bStarTool > &c该玩家不在线或不存在!"));
                     } else sender.sendMessage(Utils.color("&bStarTool > &e用法: /tpa <玩家名字>"));
-                } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+                } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color("&bStarTool > &c你必须是游戏内的玩家!"));
         } else {
             sender.sendMessage(Utils.color("&bStarTool > &e用法: /tp <玩家名字>"));

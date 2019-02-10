@@ -15,7 +15,7 @@ public class LabaCommand implements CommandExecutor {
     @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (StarToolStartup.getInstance().getConfig().getBoolean("EnableLaba")){
+        if (Utils.getCfg().getBoolean("EnableLaba")){
             if (sender.hasPermission("startool.laba.use")|| sender.isOp()) {
                 if (args.length == 0){
                     sender.sendMessage(Utils.color("&bStarTool > &e/laba <内容>"));
@@ -25,7 +25,7 @@ public class LabaCommand implements CommandExecutor {
                 else if (args.length >= 1){
                     if (!args[0].equalsIgnoreCase("title")){
                         if (!sender.hasPermission("startool.laba.bypass")) {
-                            EconomyResponse s = Vault.getEconomy().bankWithdraw(sender.getName(), StarToolStartup.getInstance().getConfig().getInt("LabaPrice"));
+                            EconomyResponse s = Vault.getEconomy().bankWithdraw(sender.getName(), Utils.getCfg().getInt("LabaPrice"));
                             if (s.transactionSuccess()) {
                                 sender.sendMessage("§b你已成功发送了一条小喇叭!");
                                 Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + args[0]));
@@ -79,7 +79,7 @@ public class LabaCommand implements CommandExecutor {
                         sender.sendMessage(Utils.color("&bStarTool > &e你可以用下划线 _ 来代替空格"));
                     }
                 }
-            } else sender.sendMessage(Utils.color(StarToolStartup.getInstance().getConfig().getString("messages.no-permission")));
+            } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
         } else sender.sendMessage("§bStarTool > §c服务器未启用小喇叭!");
         return true;
     }
