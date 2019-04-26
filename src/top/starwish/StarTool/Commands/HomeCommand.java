@@ -14,8 +14,10 @@ public class HomeCommand implements CommandExecutor {
                 Player p = (Player)sender;
                 if (p.getBedSpawnLocation() != null) {
                     p.teleport(p.getBedSpawnLocation());
-                } else sender.sendMessage(Utils.color("&bStarTool > &r你好像还没有睡过觉吧?"));
-            } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
+                } else
+                    sender.sendMessage(Utils.color("&bStarTool > &r你好像还没有睡过觉吧?"));
+            } else
+                sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.not-a-player")));
         } return true;
     }
 }

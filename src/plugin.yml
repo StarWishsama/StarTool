@@ -22,6 +22,7 @@ commands:
    tpa:
    home:
    gm:
+   chatapitest:
 permissions:
    startool.uuid:
      default: op

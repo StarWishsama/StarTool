@@ -17,17 +17,13 @@ public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
 
     @Override
-    public void onLoad() {
-        instance = this;
-    }
-
-    @Override
     public void onEnable() {
+        instance = this;
+
         saveDefaultConfig();
         File config = new File(getDataFolder(), "config.yml");
-        if (!config.exists()){
+        if (!config.exists())
             config.mkdirs();
-        }
 
         Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
@@ -47,8 +43,7 @@ public class StarToolStartup extends JavaPlugin {
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (!Bukkit.getPluginManager().getPlugin("Vault").isEnabled()){
             getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
-        }
-        else {
+        } else {
             Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
             getLogger().info("已发现 Vault 插件!");
         }

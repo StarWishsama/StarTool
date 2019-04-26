@@ -17,7 +17,6 @@ public class ChatSendMyPos implements Listener {
                 int Y = (int) l.getY();
                 int Z = (int) l.getZ();
                 e.setMessage("§b(" + X + "," + Y + "," + Z + ")");
-                return;
             }
         }
     }

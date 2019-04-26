@@ -27,12 +27,14 @@ public class LabaCommand implements CommandExecutor {
                         if (!sender.hasPermission("startool.laba.bypass")) {
                             EconomyResponse s = Vault.getEconomy().bankWithdraw(sender.getName(), Utils.getCfg().getInt("LabaPrice"));
                             if (s.transactionSuccess()) {
+                                String text = args[0].replaceAll("\\{space}", " ");
                                 sender.sendMessage("§b你已成功发送了一条小喇叭!");
-                                Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + args[0]));
+                                Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + text));
                             } else sender.sendMessage(Utils.color("§b StarTool §c> 你没有足够的金钱!"));
                         } else {
+                            String text = args[0].replaceAll("\\{space}", " ");
                             sender.sendMessage("§b由于你与服主完成了某种交易, 本次发送无需费用!");
-                            Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + args[0]));
+                            Bukkit.broadcastMessage(Utils.color("&b" + sender.getName() + " &e说: " + text));
                         }
                     }
                     else if (args[0].equalsIgnoreCase("title")){

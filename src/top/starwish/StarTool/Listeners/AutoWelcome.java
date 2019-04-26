@@ -13,6 +13,5 @@ public class AutoWelcome implements Listener {
         String JoinMessage = Utils.getCfg().getString("PlayerJoinMessage");
         Player p = e.getPlayer();
         p.sendMessage(Utils.color(JoinMessage));
-        return;
     }
 }
