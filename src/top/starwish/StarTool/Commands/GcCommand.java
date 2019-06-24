@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.ServerInfo;
 import top.starwish.StarTool.Utils.Utils;
 

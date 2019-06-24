@@ -35,9 +35,10 @@ public class UpdateChecker {
     public static void CheckUpdate(){
         new BukkitRunnable(){
             public void run(){
-                if(isLatest()){
+                if (isLatest()){
                     Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e您当前正在使用最新版本!"));
-                } else Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e新版本 " + getLatestVer() +" 已发布, 请至 Github Releases 界面下载."));
+                } else
+                    Bukkit.getConsoleSender().sendMessage(Utils.color("&bStarTool > &e新版本 " + getLatestVer() +" 已发布, 请至 Github Releases 界面下载."));
             }
         }.runTaskAsynchronously(StarToolStartup.getInstance());
     }

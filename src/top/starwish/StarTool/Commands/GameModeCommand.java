@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.Utils;
 
 public class GameModeCommand implements CommandExecutor {
@@ -13,27 +12,28 @@ public class GameModeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("gm")){
-            if (sender instanceof Player) {
-                Player p = (Player) sender;
-                if (args.length == 0){
-                    sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
-                }
-                else if (args.length == 1) {
-                    switch (args[0]) {
-                        case "0":
-                            p.setGameMode(GameMode.SURVIVAL);
-                            break;
-                        case "1":
-                            p.setGameMode(GameMode.CREATIVE);
-                            break;
-                        case "2":
-                            p.setGameMode(GameMode.ADVENTURE);
-                            break;
-                        case "3":
-                            p.setGameMode(GameMode.SPECTATOR);
-                            break;
-                    }
-                } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
+            if (sender instanceof Player ) {
+                if (sender.hasPermission("startool.commands.gamemode.use")) {
+                    Player p = (Player) sender;
+                    if (args.length == 0) {
+                        sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
+                    } else if (args.length == 1) {
+                        switch (args[0]) {
+                            case "0":
+                                p.setGameMode(GameMode.SURVIVAL);
+                                break;
+                            case "1":
+                                p.setGameMode(GameMode.CREATIVE);
+                                break;
+                            case "2":
+                                p.setGameMode(GameMode.ADVENTURE);
+                                break;
+                            case "3":
+                                p.setGameMode(GameMode.SPECTATOR);
+                                break;
+                        }
+                    } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
+                } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
             } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.not-a-player")));
         } return true;
     }

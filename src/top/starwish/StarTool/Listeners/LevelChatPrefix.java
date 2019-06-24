@@ -1,6 +1,5 @@
 package top.starwish.StarTool.Listeners;
 
-import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -14,16 +13,20 @@ public class LevelChatPrefix implements Listener {
             String PlayerName = event.getPlayer().getName();
             String SentMessage = event.getMessage();
 
-            if (WorldName.equals("world")){
+        switch (WorldName) {
+            case "world":
                 WorldName = "主世界";
-            }
-            else if (WorldName.equals("world_nether")) {
+                break;
+            case "world_nether":
                 WorldName = "地狱";
-            }
-            else if (WorldName.equals("world_the_end")) {
+                break;
+            case "world_the_end":
                 WorldName = "末地";
-            }
-            else WorldName = event.getPlayer().getWorld().getName();
-            event.setFormat(Utils.color(WorldName + "&f" + PlayerName + " > " + SentMessage));
+                break;
+            default:
+                WorldName = event.getPlayer().getWorld().getName();
+                break;
+        }
+            event.setFormat(Utils.color(WorldName + " &f" + PlayerName + " > " + SentMessage));
     }
 }

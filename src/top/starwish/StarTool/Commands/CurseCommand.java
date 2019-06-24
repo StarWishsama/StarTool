@@ -1,7 +1,6 @@
 package top.starwish.StarTool.Commands;
 
 import org.bukkit.entity.Player;
-import top.starwish.StarTool.StarToolStartup;
 import top.starwish.StarTool.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

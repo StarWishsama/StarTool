@@ -58,8 +58,7 @@ public class StarToolCommand implements CommandExecutor {
                     case "clear":
                         if (sender.hasPermission("startool.clearscreen") || sender instanceof ConsoleCommandSender) {
                             if (args.length == 1) {
-                                for (int i = 0; i <= 60; i++)
-                                    Bukkit.broadcastMessage("       ");
+                                IntStream.rangeClosed(0, 60).mapToObj(i -> "       ").forEach(Bukkit::broadcastMessage);
                                 sender.sendMessage(Utils.getCfg().getString("messages.prefix") + "§e全服清屏成功~");
                             } else {
                                 if (sender.hasPermission("startool.clearscreen.other") || sender instanceof ConsoleCommandSender) {
