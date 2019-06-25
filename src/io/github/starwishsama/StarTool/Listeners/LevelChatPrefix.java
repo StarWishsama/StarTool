@@ -1,9 +1,9 @@
-package top.starwish.StarTool.Listeners;
+package io.github.starwishsama.StarTool.Listeners;
 
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import top.starwish.StarTool.Utils.Utils;
 
 public class LevelChatPrefix implements Listener {
     @EventHandler
@@ -27,6 +27,7 @@ public class LevelChatPrefix implements Listener {
                 WorldName = event.getPlayer().getWorld().getName();
                 break;
         }
-            event.setFormat(Utils.color(WorldName + " &f" + PlayerName + " > " + SentMessage));
+        if (!Utils.getCfg().getString("chat-format").isEmpty())
+            event.setFormat(Utils.color(Utils.getCfg().getString("chat-format").replaceAll("%WorldName%", WorldName).replaceAll("%PlayerName%", PlayerName).replaceAll("%msg%", SentMessage)));
     }
 }

@@ -1,15 +1,15 @@
-package top.starwish.StarTool.Commands;
+package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.StarToolStartup;
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.apache.commons.lang.StringUtils;
-import top.starwish.StarTool.PluginHook.Vault;
+import io.github.starwishsama.StarTool.PluginHook.Vault;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import top.starwish.StarTool.StarToolStartup;
-import top.starwish.StarTool.Utils.Utils;
 
 public class LabaCommand implements CommandExecutor {
     @SuppressWarnings("deprecation")

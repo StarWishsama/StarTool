@@ -1,9 +1,9 @@
-package top.starwish.StarTool.CheckUpdate;
+package io.github.starwishsama.StarTool.CheckUpdate;
 
+import io.github.starwishsama.StarTool.StarToolStartup;
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
-import top.starwish.StarTool.StarToolStartup;
-import top.starwish.StarTool.Utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,9 +25,9 @@ public class UpdateChecker {
     }
     public static boolean isLatest(){
         boolean isLatest = false;
-        String latestver = getLatestVer();
+        String latestVer = getLatestVer();
         String current = StarToolStartup.getInstance().getDescription().getVersion();
-        if (latestver.equalsIgnoreCase(current)){
+        if (latestVer.equalsIgnoreCase(current)){
             isLatest = true;
         }
         return isLatest;

@@ -1,4 +1,4 @@
-package top.starwish.StarTool.PluginHook;
+package io.github.starwishsama.StarTool.PluginHook;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
 

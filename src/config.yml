@@ -2,33 +2,33 @@
 # StarTool 配置文件 #
 #####################
 # 使用 /laba 指令发送消息时需收取玩家多少费用? (默认为50游戏币)
-LabaPrice: 100
+labaprice: 100
 # 是否启用小喇叭功能? 需要 Vault 插件作为前置 (默认为true, 改为false以关闭)
-EnableLaba: true
+labafunction: true
 # 是否打开聊天栏世界前缀? (默认为true, 改为false以关闭)
-EnableChatPrefix: true
+chatprefix: true
 # 治愈诅咒的价格
-HealCursePrice: 120
+healcurseprice: 120
 # 自动转换为当前坐标的关键字
-PosText: pos
+postext: pos
 # 是否启用聊天发送坐标
-PosTranslate: true
+postranslate: true
 # 玩家加入服务器时发送的文字
-PlayerJoinMessage: "&b欢迎来到服务器!"
+playerjoinmsg: "&b欢迎来到服务器!"
 
 ###############################
 #                             #
 #            信息             #
 #                             #
 ###############################
-prefix: "&bStarTool >&r "
+plugin-prefix: "&bStarTool >&r "
 messages:
   usage: "&c用法:"
   not-a-player: "&c你必须是一个在游戏内的玩家!"
   no-permission: "&c你没有权限!"
 ###############################
 #                             #
-#             签到            #
+#          聊天格式            #
 #                             #
 ###############################
-checkin-file-location: ""
+chat-format: "%WorldName% %PlayerName% > %msg%"

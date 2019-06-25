@@ -1,11 +1,10 @@
-package top.starwish.StarTool.Listeners;
+package io.github.starwishsama.StarTool.Listeners;
 
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import top.starwish.StarTool.Utils.Utils;
 
 public class AutoWelcome implements Listener {
     @EventHandler

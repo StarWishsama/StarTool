@@ -1,7 +1,7 @@
-package top.starwish.StarTool.Commands;
+package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.entity.Player;
-import top.starwish.StarTool.Utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +14,7 @@ public class CurseCommand implements CommandExecutor {
             if (sender.hasPermission("startool.curse.use") || sender.isOp()) {
                 if (args.length == 0) {
                     sender.sendMessage(Utils.color("&bStarTool > &e用法: /curse <玩家名>"));
-                } else if (args.length >= 1) {
+                } else if (args.length == 1) {
                     Player op = Bukkit.getPlayer(args[0]);
                         if (Utils.isExist(args[0])){
                             if (op.hasPermission("startool.commands.curse.anticurse")){

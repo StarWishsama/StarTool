@@ -1,5 +1,5 @@
 name: StarTool
-main: top.starwish.StarTool.StarToolStartup
+main: io.github.starwishsama.StarTool.StarToolStartup
 version: 1.0.0-RELEASE
 description: "一个简单实用的小插件"
 author: StarWish_Sama
@@ -23,10 +23,28 @@ commands:
      description: "传送"
    tpa:
      description: "传送"
+   tpaccept:
+     description: ""
+     aliases:
+       - tpyes
+   tpdeny:
+     description: ""
+     aliases:
+       - tpno
    home:
      description: "传送"
    gm:
      description: "改变游戏模式"
+   enderchest:
+     description: enderchest
+     aliases:
+       - ec
+       - echest
+   msg:
+     description: send msg to other player
+     aliases:
+       - message
+       - tell
 permissions:
    startool.uuid:
      default: op

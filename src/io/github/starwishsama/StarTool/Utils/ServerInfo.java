@@ -1,4 +1,4 @@
-package top.starwish.StarTool.Utils;
+package io.github.starwishsama.StarTool.Utils;
 
 import com.sun.management.OperatingSystemMXBean;
 

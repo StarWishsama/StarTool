@@ -1,22 +1,22 @@
-package top.starwish.StarTool.Commands;
+package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.Config.Config;
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import top.starwish.StarTool.Utils.Utils;
 
 public class GameModeCommand implements CommandExecutor {
-    @SuppressWarnings("deprecation")
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("gm")){
-            if (sender instanceof Player ) {
+            if (sender instanceof Player) {
                 if (sender.hasPermission("startool.commands.gamemode.use")) {
                     Player p = (Player) sender;
                     if (args.length == 0) {
-                        sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
+                        sender.sendMessage(Utils.color(Config.plugin_prefix + Config.usage + " /gm <GameMode>"));
                     } else if (args.length == 1) {
                         switch (args[0]) {
                             case "0":
@@ -32,9 +32,9 @@ public class GameModeCommand implements CommandExecutor {
                                 p.setGameMode(GameMode.SPECTATOR);
                                 break;
                         }
-                    } else sender.sendMessage(Utils.color("&bStarTool > &rUsage: /gm <GameMode>"));
-                } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));
-            } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.not-a-player")));
+                    } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.usage + " /gm <GameMode>"));
+                } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.nopermission));
+            } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.notaplayer));
         } return true;
     }
 }

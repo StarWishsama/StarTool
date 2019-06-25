@@ -1,11 +1,11 @@
-package top.starwish.StarTool.Commands;
+package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.Utils.ServerInfo;
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import top.starwish.StarTool.Utils.ServerInfo;
-import top.starwish.StarTool.Utils.Utils;
 
 public class GcCommand implements CommandExecutor {
 

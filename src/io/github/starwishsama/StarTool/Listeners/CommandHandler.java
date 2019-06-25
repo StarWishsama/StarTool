@@ -1,9 +1,9 @@
-package top.starwish.StarTool.Listeners;
+package io.github.starwishsama.StarTool.Listeners;
 
+import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import top.starwish.StarTool.Utils.Utils;
 
 public class CommandHandler implements Listener {
     @EventHandler

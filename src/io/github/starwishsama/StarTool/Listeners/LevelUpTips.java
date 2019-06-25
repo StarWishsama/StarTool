@@ -1,4 +1,4 @@
-package top.starwish.StarTool.Listeners;
+package io.github.starwishsama.StarTool.Listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
