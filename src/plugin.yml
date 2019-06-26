@@ -17,10 +17,6 @@ commands:
      aliases: [lb]
    gc:
      description: "显示服务器信息"
-   tp:
-     description: "传送"
-   tphere:
-     description: "传送"
    tpa:
      description: "传送"
    tpaccept:
@@ -45,6 +41,14 @@ commands:
      aliases:
        - message
        - tell
+   debug:
+    description: debug
+   back:
+    description: back
+   bed:
+     description: bed
+   sethome:
+     description: sethome
 permissions:
    startool.uuid:
      default: op
@@ -68,14 +72,12 @@ permissions:
      default: op
    startool.commands.version:
      default: true
-   startool.commands.teleport:
-     default: op
    startool.commands.teleport.tpa:
      default: true
-   startool.commands.teleport.tphere:
-     default: op
    startool.commands.gamemode:
      default: op
      children:
        - startool.commands.gamemode.other
        - startool.commands.gamemode.use
+   startool.commands.debug:
+     default: op

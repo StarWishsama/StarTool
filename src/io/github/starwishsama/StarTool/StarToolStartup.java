@@ -1,16 +1,25 @@
 package io.github.starwishsama.StarTool;
 
+import io.github.starwishsama.StarTool.Bot.PicqBotXUtils;
+import io.github.starwishsama.StarTool.CheckUpdate.UpdateChecker;
 import io.github.starwishsama.StarTool.Commands.*;
 import io.github.starwishsama.StarTool.Config.Config;
 import io.github.starwishsama.StarTool.Listeners.*;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
-import io.github.starwishsama.StarTool.CheckUpdate.UpdateChecker;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.util.Objects;
+
+import static cn.hutool.core.lang.Console.log;
 
 public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
+    public static Thread bot_thread;
+    public static PicqBotXUtils bot;
+    private boolean BotStatus = true;
 
     @Override
     public void onEnable() {
@@ -18,28 +27,27 @@ public class StarToolStartup extends JavaPlugin {
 
         File config = new File(getDataFolder(), "config.yml");
         if (!config.exists())
-            config.mkdirs();
+            try {
+                Files.copy(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("config.yml")), config.toPath());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
         Config.loadConfig();
 
-        Bukkit.getPluginManager().registerEvents(new LevelChatPrefix(), this);
+        if (!BotStatus){
+            bot();
+            BotStatus = true;
+        }
+
+        Bukkit.getPluginManager().registerEvents(new AutoTranslatePos(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
-        Bukkit.getPluginManager().registerEvents(new ChatSendMyPos(), this);
         Bukkit.getPluginManager().registerEvents(new AutoWelcome(), this);
         Bukkit.getPluginManager().registerEvents(new CommandHandler(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDeadLocation(), this);
+        Bukkit.getPluginManager().registerEvents(new AtListener(), this);
 
-        Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
-        Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
-        Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
-        Bukkit.getPluginCommand("tp").setExecutor(new TeleportCommand());
-        Bukkit.getPluginCommand("tphere").setExecutor(new TeleportCommand());
-        Bukkit.getPluginCommand("tpa").setExecutor(new TeleportCommand());
-        Bukkit.getPluginCommand("tpaccept").setExecutor(new TeleportCommand());
-        Bukkit.getPluginCommand("tpdeny").setExecutor(new TeleportCommand());
-        Bukkit.getPluginCommand("home").setExecutor(new HomeCommand());
-        Bukkit.getPluginCommand("gm").setExecutor(new GameModeCommand());
-        Bukkit.getPluginCommand("enderchest").setExecutor(new PortableEnderChestCommand());
-        Bukkit.getPluginCommand("msg").setExecutor(new PrivateMsgCommand());
+        registerCommands();
 
         getLogger().info("正在检查服务器是否安装 Vault 以启用小喇叭..");
         if (Bukkit.getPluginManager().getPlugin("Vault") == null){
@@ -62,5 +70,40 @@ public class StarToolStartup extends JavaPlugin {
 
     public static StarToolStartup getInstance() {
         return instance;
+    }
+
+    private void registerCommands(){
+        Bukkit.getPluginCommand("curse").setExecutor(new CurseCommand());
+        Bukkit.getPluginCommand("startool").setExecutor(new StarToolCommand());
+        Bukkit.getPluginCommand("gc").setExecutor(new GcCommand());
+        Bukkit.getPluginCommand("tpa").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("tpaccept").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("tpdeny").setExecutor(new TeleportCommand());
+        Bukkit.getPluginCommand("bed").setExecutor(new HomeCommand());
+        Bukkit.getPluginCommand("home").setExecutor(new HomeCommand());
+        Bukkit.getPluginCommand("sethome").setExecutor(new HomeCommand());
+        Bukkit.getPluginCommand("gm").setExecutor(new GameModeCommand());
+        Bukkit.getPluginCommand("enderchest").setExecutor(new PortableEnderChestCommand());
+        Bukkit.getPluginCommand("msg").setExecutor(new PrivateMsgCommand());
+        Bukkit.getPluginCommand("back").setExecutor(new BackCommand());
+        Bukkit.getPluginCommand("debug").setExecutor(new DebugCommand());
+    }
+
+    /**
+     * From https://github.com/nitu2003/ConnectionRe/
+     * @author nitu2003
+     */
+    void bot() {
+        int botPort  = Config.bot_port;
+        int coolqPort = Config.coolq_port;
+        String coolqLink = Config.coolq_link;
+
+        log("酷Q机器人 > "+ coolqLink + ":" + coolqPort);
+        log("本地机器人 > 127.0.0.1:" + botPort);
+
+        bot = new PicqBotXUtils(botPort, coolqPort, coolqLink);
+
+        bot_thread = new Thread(bot);
+        bot_thread.start();
     }
 }

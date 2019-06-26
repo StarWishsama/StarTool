@@ -15,7 +15,6 @@ postext: pos
 postranslate: true
 # 玩家加入服务器时发送的文字
 playerjoinmsg: "&b欢迎来到服务器!"
-
 ###############################
 #                             #
 #            信息             #
@@ -28,7 +27,13 @@ messages:
   no-permission: "&c你没有权限!"
 ###############################
 #                             #
-#          聊天格式            #
+#          机器人设置          #
 #                             #
 ###############################
-chat-format: "%WorldName% %PlayerName% > %msg%"
+cmd-prefix:
+  - "/"
+  - "#"
+coolq-port: 5700
+bot-port: 5701
+coolq-link: "http://127.0.0.1"
+owner-qq:

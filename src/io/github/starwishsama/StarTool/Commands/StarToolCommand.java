@@ -50,6 +50,7 @@ public class StarToolCommand implements CommandExecutor {
                         if (sender instanceof ConsoleCommandSender || sender.hasPermission("startool.commands.version")) {
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.plugin_prefix + "&e目前版本: " + Version));
                             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.plugin_prefix + "&e服务端版本: " + Bukkit.getBukkitVersion()));
+                            sender.sendMessage(Utils.color(Config.plugin_prefix + "&a部分代码来自于 https://github.com/MlgmXyysd/Teleport/"));
                             if (UpdateChecker.isLatest()) {
                                 sender.sendMessage(Utils.color(Config.plugin_prefix + "&r你当前正在使用最新版本 " + StarToolStartup.getInstance().getDescription().getVersion()));
                             } else {
