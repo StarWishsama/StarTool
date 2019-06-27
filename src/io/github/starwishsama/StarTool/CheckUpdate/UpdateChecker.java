@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class UpdateChecker {
     public static String getLatestVer(){
@@ -16,7 +17,7 @@ public class UpdateChecker {
         try {
             URL url = new URL("https://raw.githubusercontent.com/StarWishsama/StarTool/master/Version.txt");
             InputStream a = url.openStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(a, "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(a, StandardCharsets.UTF_8));
             version = br.readLine();
         } catch (Exception e){
             e.printStackTrace();

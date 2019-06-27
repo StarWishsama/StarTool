@@ -25,7 +25,7 @@ public class LabaCommand implements CommandExecutor {
                 else if (args.length > 1) {
                     if (!args[0].equalsIgnoreCase("title")){
                         if (!sender.hasPermission("startool.laba.bypass")) {
-                            EconomyResponse labaTrade = Vault.getEconomy().bankWithdraw(sender.getName(), Utils.getCfg().getInt("LabaPrice"));
+                            EconomyResponse labaTrade = Vault.getEconomy().bankWithdraw(sender.getName(), Utils.getCfg().getInt("labaPrice"));
                             if (labaTrade.transactionSuccess()) {
                                 String text = args[0].replaceAll("\\{space}", " ");
                                 sender.sendMessage("§b你已成功发送了一条小喇叭!");

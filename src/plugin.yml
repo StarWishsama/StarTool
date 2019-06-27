@@ -49,6 +49,8 @@ commands:
      description: bed
    sethome:
      description: sethome
+   fly:
+     description: fly
 permissions:
    startool.uuid:
      default: op
@@ -80,4 +82,6 @@ permissions:
        - startool.commands.gamemode.other
        - startool.commands.gamemode.use
    startool.commands.debug:
+     default: op
+   startool.commands.fly:
      default: op

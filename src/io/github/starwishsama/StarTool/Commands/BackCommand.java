@@ -17,8 +17,8 @@ public class BackCommand implements CommandExecutor {
                 if (Config.backLocation.containsKey(p.getUniqueId())) {
                     Location l = Config.backLocation.get(p.getUniqueId());
                     p.teleport(l);
-                } else sender.sendMessage(Utils.color(Config.plugin_prefix + "&c你还没死过就不用返回了吧..."));
-            } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.notaplayer));
+                } else sender.sendMessage(Utils.color(Config.pluginPrefix + "&c你还没死过就不用返回了吧..."));
+            } else sender.sendMessage(Utils.color(Config.pluginPrefix + Config.notAPlayer));
         }
         return true;
     }

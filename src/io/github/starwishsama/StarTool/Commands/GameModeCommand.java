@@ -19,7 +19,7 @@ public class GameModeCommand implements CommandExecutor {
                 if (sender.hasPermission("startool.commands.gamemode.use")) {
                     Player p = (Player) sender;
                     if (args.length == 0) {
-                        sender.sendMessage(Utils.color(Config.plugin_prefix + Config.usage + " /gm <GameMode>"));
+                        sender.sendMessage(Utils.color(Config.pluginPrefix + Config.usage + " /gm <GameMode>"));
                     } else if (args.length == 1) {
                         switch (args[0]) {
                             case "0":
@@ -53,9 +53,9 @@ public class GameModeCommand implements CommandExecutor {
                                     break;
                             }
                         }
-                    } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.usage + " /gm <GameMode>"));
-                } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.nopermission));
-            } else sender.sendMessage(Utils.color(Config.plugin_prefix + Config.notaplayer));
+                    } else sender.sendMessage(Utils.color(Config.pluginPrefix + Config.usage + " /gm <GameMode>"));
+                } else sender.sendMessage(Utils.color(Config.pluginPrefix + Config.noPermission));
+            } else sender.sendMessage(Utils.color(Config.pluginPrefix + Config.notAPlayer));
         } return true;
     }
 }

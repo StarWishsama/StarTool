@@ -40,30 +40,30 @@ public class StarToolCommand implements CommandExecutor {
                         if (sender instanceof Player) {
                             Player p = (Player) sender;
                             if (sender.hasPermission("startool.uuid")) {
-                                sender.sendMessage(Config.plugin_prefix + "§c正在获取您的UUID...");
-                                sender.sendMessage(Config.plugin_prefix + "§e你的UUID为:" + p.getUniqueId());
-                            } else sender.sendMessage(Utils.color(Config.nopermission));
+                                sender.sendMessage(Config.pluginPrefix + "§c正在获取您的UUID...");
+                                sender.sendMessage(Config.pluginPrefix + "§e你的UUID为:" + p.getUniqueId());
+                            } else sender.sendMessage(Utils.color(Config.noPermission));
                         } else
-                            sender.sendMessage(Utils.color(Config.plugin_prefix + Utils.getCfg().getString("messages.not-a-player")));
+                            sender.sendMessage(Utils.color(Config.pluginPrefix + Utils.getCfg().getString("messages.not-a-player")));
                         break;
                     case "version":
                         if (sender instanceof ConsoleCommandSender || sender.hasPermission("startool.commands.version")) {
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.plugin_prefix + "&e目前版本: " + Version));
-                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.plugin_prefix + "&e服务端版本: " + Bukkit.getBukkitVersion()));
-                            sender.sendMessage(Utils.color(Config.plugin_prefix + "&a部分代码来自于 https://github.com/MlgmXyysd/Teleport/"));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.pluginPrefix + "&e目前版本: " + Version));
+                            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Config.pluginPrefix + "&e服务端版本: " + Bukkit.getBukkitVersion()));
+                            sender.sendMessage(Utils.color(Config.pluginPrefix + "&a部分代码来自于 https://github.com/MlgmXyysd/Teleport/"));
                             if (UpdateChecker.isLatest()) {
-                                sender.sendMessage(Utils.color(Config.plugin_prefix + "&r你当前正在使用最新版本 " + StarToolStartup.getInstance().getDescription().getVersion()));
+                                sender.sendMessage(Utils.color(Config.pluginPrefix + "&r你当前正在使用最新版本 " + StarToolStartup.getInstance().getDescription().getVersion()));
                             } else {
-                                sender.sendMessage(Utils.color(Config.plugin_prefix + "&r你目前使用的不是最新版本! 最新版本为 " + UpdateChecker.getLatestVer()));
-                                sender.sendMessage(Utils.color(Config.plugin_prefix + "&r请至 https://github.com/StarWishsama/StarTool/releases 下载最新版!"));
+                                sender.sendMessage(Utils.color(Config.pluginPrefix + "&r你目前使用的不是最新版本! 最新版本为 " + UpdateChecker.getLatestVer()));
+                                sender.sendMessage(Utils.color(Config.pluginPrefix + "&r请至 https://github.com/StarWishsama/StarTool/releases 下载最新版!"));
                             }
-                        } else sender.sendMessage(Utils.color(Config.nopermission));
+                        } else sender.sendMessage(Utils.color(Config.noPermission));
                         break;
                     case "clear":
                         if (sender.hasPermission("startool.clearscreen") || sender instanceof ConsoleCommandSender) {
                             if (args.length == 1) {
                                 IntStream.rangeClosed(0, 60).mapToObj(i -> "       ").forEach(Bukkit::broadcastMessage);
-                                sender.sendMessage(Config.plugin_prefix + "§e全服清屏成功~");
+                                sender.sendMessage(Config.pluginPrefix + "§e全服清屏成功~");
                             } else {
                                 if (sender.hasPermission("startool.clearscreen.other") || sender instanceof ConsoleCommandSender) {
                                     Player otherp = Bukkit.getPlayer(args[1]);
@@ -71,27 +71,27 @@ public class StarToolCommand implements CommandExecutor {
                                         if (Utils.isExist(args[1])) {
                                             IntStream.rangeClosed(0, 60).forEach(i -> {
                                                 otherp.sendMessage("        ");
-                                                otherp.sendMessage(Config.plugin_prefix + "§e您已被管理员清屏!");
-                                                sender.sendMessage(Config.plugin_prefix + "§e成功为 §c" + otherp.getName() + " §e清屏!");
+                                                otherp.sendMessage(Config.pluginPrefix + "§e您已被管理员清屏!");
+                                                sender.sendMessage(Config.pluginPrefix + "§e成功为 §c" + otherp.getName() + " §e清屏!");
                                             });
                                         } else
-                                            sender.sendMessage(Utils.color(Config.plugin_prefix + "&c玩家不在线!"));
+                                            sender.sendMessage(Utils.color(Config.pluginPrefix + "&c玩家不在线!"));
                                     } else
-                                        sender.sendMessage(Config.plugin_prefix + "§c执行命令时发生了错误");
+                                        sender.sendMessage(Config.pluginPrefix + "§c执行命令时发生了错误");
                                 } else
-                                    sender.sendMessage(Utils.color(Config.nopermission));
+                                    sender.sendMessage(Utils.color(Config.noPermission));
                             }
-                        } else sender.sendMessage(Utils.color(Config.nopermission));
+                        } else sender.sendMessage(Utils.color(Config.noPermission));
                         break;
                     case "reload":
                         if (sender.hasPermission("startool.commands.reload") || sender instanceof ConsoleCommandSender) {
                             Config.loadConfig();
-                            sender.sendMessage(Utils.color(Config.plugin_prefix + "&e重载完成."));
+                            sender.sendMessage(Utils.color(Config.pluginPrefix + "&e重载完成."));
                         } else
-                            sender.sendMessage(Utils.color(Config.plugin_prefix + Config.nopermission));
+                            sender.sendMessage(Utils.color(Config.pluginPrefix + Config.noPermission));
                         break;
                     default:
-                        sender.sendMessage(Utils.color(Config.plugin_prefix + "&r请使用 /startool 获取帮助."));
+                        sender.sendMessage(Utils.color(Config.pluginPrefix + "&r请使用 /startool 获取帮助."));
                        break;
                 } return true;
             }

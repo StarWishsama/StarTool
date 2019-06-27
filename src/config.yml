@@ -5,8 +5,10 @@
 labaprice: 100
 # 是否启用小喇叭功能? 需要 Vault 插件作为前置 (默认为true, 改为false以关闭)
 labafunction: true
-# 是否打开聊天栏世界前缀? (默认为true, 改为false以关闭)
-chatprefix: true
+# 是否打开聊天栏聊天格式? (默认为true, 改为false以关闭)
+chatformat-switch: true
+# 聊天格式
+chatformat: "%WorldName% %PlayerName% &7> &r%msg%"
 # 治愈诅咒的价格
 healcurseprice: 120
 # 自动转换为当前坐标的关键字
@@ -17,6 +19,19 @@ postranslate: true
 playerjoinmsg: "&b欢迎来到服务器!"
 ###############################
 #                             #
+#          机器人设置          #
+#                             #
+###############################
+cmd-prefix: "/"
+coolq-port: 5700
+bot-port: 5701
+coolq-link: "http://127.0.0.1"
+owner-qq:
+# 设置是否在开服时向QQ群发送消息.
+show-msg-on-startup: true
+group:
+###############################
+#                             #
 #            信息             #
 #                             #
 ###############################
@@ -25,15 +40,6 @@ messages:
   usage: "&c用法:"
   not-a-player: "&c你必须是一个在游戏内的玩家!"
   no-permission: "&c你没有权限!"
-###############################
-#                             #
-#          机器人设置          #
-#                             #
-###############################
-cmd-prefix:
-  - "/"
-  - "#"
-coolq-port: 5700
-bot-port: 5701
-coolq-link: "http://127.0.0.1"
-owner-qq:
+bot-messages:
+  on-server-startup: "Bot > 服务器正在启动!"
+  on-server-stop: "Bot > 服务器正在关闭!"

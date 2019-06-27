@@ -1,6 +1,8 @@
 package io.github.starwishsama.StarTool;
 
-import io.github.starwishsama.StarTool.Bot.PicqBotXUtils;
+import cc.moecraft.icq.sender.IcqHttpApi;
+
+import io.github.starwishsama.StarTool.Bot.PicqBotXUtills;
 import io.github.starwishsama.StarTool.CheckUpdate.UpdateChecker;
 import io.github.starwishsama.StarTool.Commands.*;
 import io.github.starwishsama.StarTool.Config.Config;
@@ -18,7 +20,7 @@ import static cn.hutool.core.lang.Console.log;
 public class StarToolStartup extends JavaPlugin {
     private static StarToolStartup instance;
     public static Thread bot_thread;
-    public static PicqBotXUtils bot;
+    public static PicqBotXUtills bot;
     private boolean BotStatus = true;
 
     @Override
@@ -38,14 +40,16 @@ public class StarToolStartup extends JavaPlugin {
         if (!BotStatus){
             bot();
             BotStatus = true;
+            if (Config.onServerStartUp != null){
+                getApi().sendGroupMsg(Config.group, Config.onServerStartUp);
+            }
         }
 
-        Bukkit.getPluginManager().registerEvents(new AutoTranslatePos(), this);
+        Bukkit.getPluginManager().registerEvents(new ChatListener(), this);
         Bukkit.getPluginManager().registerEvents(new LevelUpTips(), this);
         Bukkit.getPluginManager().registerEvents(new AutoWelcome(), this);
         Bukkit.getPluginManager().registerEvents(new CommandHandler(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeadLocation(), this);
-        Bukkit.getPluginManager().registerEvents(new AtListener(), this);
 
         registerCommands();
 
@@ -53,7 +57,7 @@ public class StarToolStartup extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("Vault") == null){
             getLogger().warning("未发现服务器安装了 Vault, 将自动禁用小喇叭指令!");
         } else {
-            Bukkit.getPluginCommand("laba").setExecutor(new LabaCommand());
+            Objects.requireNonNull(Bukkit.getPluginCommand("laba")).setExecutor(new LabaCommand());
             getLogger().info("已发现 Vault 插件!");
         }
 
@@ -63,6 +67,9 @@ public class StarToolStartup extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        if (Config.onServerStop != null){
+            getApi().sendGroupMsg(Config.group, Config.onServerStop);
+        }
         Bukkit.getScheduler().cancelTasks(this);
         getLogger().info("正在关闭插件...");
         saveDefaultConfig();
@@ -87,6 +94,7 @@ public class StarToolStartup extends JavaPlugin {
         Bukkit.getPluginCommand("msg").setExecutor(new PrivateMsgCommand());
         Bukkit.getPluginCommand("back").setExecutor(new BackCommand());
         Bukkit.getPluginCommand("debug").setExecutor(new DebugCommand());
+        Bukkit.getPluginCommand("fly").setExecutor(new FlyCommand());
     }
 
     /**
@@ -101,9 +109,13 @@ public class StarToolStartup extends JavaPlugin {
         log("酷Q机器人 > "+ coolqLink + ":" + coolqPort);
         log("本地机器人 > 127.0.0.1:" + botPort);
 
-        bot = new PicqBotXUtils(botPort, coolqPort, coolqLink);
+        bot = new PicqBotXUtills(botPort, coolqPort, coolqLink);
 
         bot_thread = new Thread(bot);
         bot_thread.start();
+    }
+
+    public static IcqHttpApi getApi() {
+        return bot.getApi();
     }
 }

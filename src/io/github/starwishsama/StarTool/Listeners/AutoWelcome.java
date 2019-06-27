@@ -12,6 +12,6 @@ public class AutoWelcome implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
         Player p = e.getPlayer();
-        p.sendMessage(Utils.color(Config.PlayerJoinMsg));
+        p.sendMessage(Utils.color(Config.playerJoinMsg));
     }
 }

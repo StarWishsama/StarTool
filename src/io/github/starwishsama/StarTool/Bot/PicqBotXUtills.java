@@ -8,16 +8,16 @@ import cc.moecraft.logger.environments.ColorSupportLevel;
 import io.github.starwishsama.StarTool.Bot.BotCommands.VersionCommand;
 import io.github.starwishsama.StarTool.Config.Config;
 
-public class PicqBotXUtils implements Runnable {
+public class PicqBotXUtills implements Runnable {
     /**
      * From https://github.com/nitu2003/ConnectionRe/
      * @author nitu2003
      */
-    final PicqBotX bot;
+    final cc.moecraft.icq.PicqBotX bot;
 
-    public PicqBotXUtils(int in, int out, String url) {
+    public PicqBotXUtills(int in, int out, String url) {
         PicqConfig config = new PicqConfig(in).setColorSupportLevel(ColorSupportLevel.DISABLED);
-        bot = new PicqBotX(config);
+        bot = new cc.moecraft.icq.PicqBotX(config);
         bot.addAccount("MinatoAqua", url, out);
         bot.enableCommandManager(Config.bot_cmd_prefix);
         //注册机器人监听器

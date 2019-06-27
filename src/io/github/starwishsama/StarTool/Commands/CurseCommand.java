@@ -27,7 +27,7 @@ public class CurseCommand implements CommandExecutor {
                                     op.sendMessage(Utils.color("&bStarTool > &e你被诅咒了!"));
                                     sender.sendMessage(Utils.color("&bStarTool > &e成功诅咒了 " + op.getName() + " !"));
                                 } else sender.sendMessage(Utils.color("&bStarTool > &c你不能诅咒你自己!"));
-                            } else sender.sendMessage(Utils.color(Config.nopermission));
+                            } else sender.sendMessage(Utils.color(Config.noPermission));
                         } else sender.sendMessage(Utils.color("&bStarTool > &c这名玩家不存在!"));
                 } else sender.sendMessage(Utils.color("&bStarTool > &e用法: /curse <玩家名>"));
             } else sender.sendMessage(Utils.color(Utils.getCfg().getString("messages.no-permission")));

@@ -1,34 +1,23 @@
 package io.github.starwishsama.StarTool.Utils;
 
-import com.sun.management.OperatingSystemMXBean;
-
 import java.lang.management.ManagementFactory;
 
-//源代码来自: https://blog.csdn.net/u014174854/article/details/79816693
 public class ServerInfo {
+    static Runtime run = Runtime.getRuntime();
     public static String getOsName(){
         String osName = System.getProperty("os.name");
         return osName;
     }
 
-    public static long getUsedMemory(){
-        int kb = 1024;
-        OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory
-                .getOperatingSystemMXBean();
-        long usedMemory = (osmxb.getTotalPhysicalMemorySize() - osmxb.getFreePhysicalMemorySize()) / kb / kb;
-        return usedMemory;
+    public static long getUsedMemory() {
+        return (run.totalMemory() - run.freeMemory()) / 1048576;
     }
 
-    public static long getTotalMemorySize(){
-        int kb = 1024;
-        OperatingSystemMXBean osmxb = (OperatingSystemMXBean) ManagementFactory
-                .getOperatingSystemMXBean();
-        long totalMemorySize = osmxb.getTotalPhysicalMemorySize() / kb / kb;
-        return totalMemorySize;
+    public static long getMaxMemory() {
+        return run.maxMemory() / 1048576;
     }
 
-    public static String getJVMVersion(){
-        String JVMVersion = ManagementFactory.getRuntimeMXBean().getVmVersion();
-        return JVMVersion;
+    public static String getJVMVersion() {
+        return ManagementFactory.getRuntimeMXBean().getVmVersion();
     }
 }
