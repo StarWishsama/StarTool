@@ -94,7 +94,8 @@ public class StarToolMain extends JavaPlugin {
                         }
                     } else {
                         Bukkit.broadcastMessage(Utils.color(Lang.pluginPrefix + "&c服务器正在重启!"));
-                        Bukkit.dispatchCommand(sender, "restart");
+                        // Bukkit 不允许在异步执行中调用 Bukkit API, 需要另寻他路
+                        //Bukkit.dispatchCommand(sender, "restart");
                         break;
                     }
                 }
