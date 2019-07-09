@@ -1,0 +1,38 @@
+main: io.github.starwishsama.StarTool.StarToolMain
+name: StarTool
+version: 1.0.2-RELEASE
+softdepend: [ProtocolLib]
+api-version: 1.13
+
+commands:
+  startool:
+    description: The main command of StarTool
+    aliases: stool
+  at:
+    description: at
+  sgc:
+    description: gc
+    aliases:
+      - startoolgc
+      - stgc
+      - stoolgc
+  srestart:
+    description: restart server
+
+permissions:
+  startool.reload:
+    default: op
+  startool.colorsign:
+    default: op
+  startool.at.all:
+    default: notop
+  startool.at.notify:
+    default: notop
+  startool.clearscreen:
+    default: op
+  startool.clearscreen.other:
+    default: op
+  startool.commands.gc:
+    default: op
+  startool.commands.restart:
+    default: op
