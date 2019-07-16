@@ -24,10 +24,8 @@ public class RestartCommand implements CommandExecutor {
                 if (StringUtils.isNumeric(args[0])) {
                     Date now = new Date();
                     timeToRestart = now.getTime() + Integer.parseInt(args[0]) * 1000;
-                    sender.sendMessage(now.getTime() + "");
-                    sender.sendMessage(timeToRestart + "");
                     Bukkit.broadcastMessage(Utils.color(Lang.pluginPrefix + Lang.restartMsg.replaceAll("%s", args[0])));
-                    StarToolMain.doRestart(sender);
+                    StarToolMain.doRestart();
                 }
             }
         } else

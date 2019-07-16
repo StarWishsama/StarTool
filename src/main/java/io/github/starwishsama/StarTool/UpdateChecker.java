@@ -32,7 +32,7 @@ public class UpdateChecker {
         }
         return isLatest;
     }
-    public static void CheckUpdate(){
+    static void CheckUpdate(){
         new BukkitRunnable(){
             public void run(){
                 if (isLatest()){

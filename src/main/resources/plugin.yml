@@ -1,6 +1,6 @@
 main: io.github.starwishsama.StarTool.StarToolMain
 name: StarTool
-version: 1.0.2-RELEASE
+version: 1.0.3-RELEASE
 softdepend: [ProtocolLib]
 api-version: 1.13
 
@@ -18,16 +18,21 @@ commands:
       - stoolgc
   srestart:
     description: restart server
-
+  dustbin:
+    description: dustbin
+    aliases:
+      - trashcan
+      - db
+      - tc
 permissions:
   startool.reload:
     default: op
   startool.colorsign:
     default: op
   startool.at.all:
-    default: notop
+    default: op
   startool.at.notify:
-    default: notop
+    default: true
   startool.clearscreen:
     default: op
   startool.clearscreen.other:

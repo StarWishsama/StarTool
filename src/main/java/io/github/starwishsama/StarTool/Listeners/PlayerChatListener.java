@@ -40,7 +40,7 @@ public class PlayerChatListener implements Listener{
                 }
                 msg = msg.replace("@全体成员", Utils.color("&b@全体成员&r")).replace("@全体玩家", Utils.color("&b@全体玩家&r")).replace("@all", Utils.color("&b@all&r"));
             } else
-                player.sendMessage(Lang.pluginPrefix + Lang.noPermission);
+                player.sendMessage(Utils.color(Lang.pluginPrefix + Lang.noPermission));
         } else if (msg.contains(Config.posText)){
             Location l = e.getPlayer().getLocation();
             int X = (int) l.getX();
