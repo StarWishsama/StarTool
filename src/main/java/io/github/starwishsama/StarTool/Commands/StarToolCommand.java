@@ -1,7 +1,9 @@
 package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.Files.BlockData;
 import io.github.starwishsama.StarTool.Files.Config;
 import io.github.starwishsama.StarTool.Files.Lang;
+import io.github.starwishsama.StarTool.Files.PlayerData;
 import io.github.starwishsama.StarTool.StarToolMain;
 import io.github.starwishsama.StarTool.UpdateChecker;
 import io.github.starwishsama.StarTool.Utils.Utils;
@@ -26,6 +28,9 @@ public class StarToolCommand implements CommandExecutor, TabCompleter {
                 case "reload":
                     if (sender.hasPermission("startool.reload")) {
                         Config.loadCfg();
+                        Lang.loadLang();
+                        BlockData.loadCfg();
+                        Config.loadPlayerData();
                         sender.sendMessage(Utils.color(Lang.pluginPrefix + "&a配置重载成功!"));
                     } else
                         sender.sendMessage(Utils.color("&bStarTool &7> &b你没有权限!"));

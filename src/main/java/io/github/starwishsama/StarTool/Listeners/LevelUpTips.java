@@ -13,6 +13,6 @@ public class LevelUpTips implements Listener {
         Player p = e.getPlayer();
         if (e.getNewLevel() < e.getOldLevel())
             return;
-        p.sendMessage(Utils.color(Lang.pluginPrefix + "&b" + e.getPlayer().getName() + ", 恭喜你升级至 " + e.getNewLevel() + "级!"));
+        p.sendMessage(Utils.color(Lang.pluginPrefix + "&r" + e.getPlayer().getName() + ", 恭喜你升级至 " + e.getNewLevel() + "级!"));
     }
 }

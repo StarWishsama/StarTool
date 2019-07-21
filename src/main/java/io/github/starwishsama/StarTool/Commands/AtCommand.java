@@ -1,6 +1,8 @@
 package io.github.starwishsama.StarTool.Commands;
 
+import io.github.starwishsama.StarTool.Files.Config;
 import io.github.starwishsama.StarTool.Files.Lang;
+import io.github.starwishsama.StarTool.Files.PlayerData;
 import io.github.starwishsama.StarTool.Utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,28 +14,32 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AtCommand implements CommandExecutor, TabCompleter {
-    public static final Map<UUID, Boolean> notifyStatus = new HashMap<>();
+    private List<PlayerData> notifyStatus = Config.playerDataList;
     private String[] subCommand = {"notify"};
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-        if (args.length > 0){
+        if (args.length == 0) {
+            sender.sendMessage(Utils.color(Lang.pluginPrefix + "&c用法: /at notify"));
+        }
+        if (args.length > 0 && args[0].equalsIgnoreCase("notify")) {
             if (sender instanceof Player) {
                 Player p = (Player) sender;
-                if (args[0].equalsIgnoreCase("notify")) {
-                    if (notifyStatus.containsKey(p.getUniqueId())){
-                        boolean status = notifyStatus.get(p.getUniqueId());
-                        if (status) {
-                            notifyStatus.put(p.getUniqueId(), false);
-                            sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOff));
-                        } else {
-                            notifyStatus.put(p.getUniqueId(), true);
-                            sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOn));
+                if (notifyStatus != null) {
+                    for (PlayerData pd : notifyStatus) {
+                        if (pd.getPlayerUUID() == p.getUniqueId()) {
+                            if (pd.getAtNotifyStatus()) {
+                                pd.setAtNotifyStatus(false);
+                                sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOff));
+                            } else if (!pd.getAtNotifyStatus()) {
+                                pd.setAtNotifyStatus(true);
+                                sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOn));
+                            }
                         }
-                    } else {
-                        notifyStatus.put(p.getUniqueId(), false);
-                        sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOff));
                     }
+                } else {
+                    notifyStatus.add(new PlayerData(p.getUniqueId(), true));
+                    sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.atNotifyOn));
                 }
             } else
                 sender.sendMessage(Utils.color(Lang.pluginPrefix + Lang.notPlayer));

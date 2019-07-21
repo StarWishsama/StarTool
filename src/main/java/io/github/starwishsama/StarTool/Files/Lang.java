@@ -16,16 +16,19 @@ public class Lang {
     public static String atNotifyOff;
     public static String playerSleepMsg;
     public static String restartMsg;
+    public static String wrongAmount;
+    public static String notOnline;
+    public static String noEnoughMoney;
+    public static String noNegative;
+    public static String errorMessage;
+    public static String transactionSuccess;
+    public static String receiveSuccess;
 
     public static void loadLang(){
         File langFile = new File(instance.getDataFolder(), "lang.yml");
         FileConfiguration lang = YamlConfiguration.loadConfiguration(langFile);
-        if (!langFile.exists())
-            setupLang();
-        if (lang.getString("restartMsg") == null)
-            setupLang();
-        if (lang.getDefaultSection() == null)
-            setupLang();
+        if (!langFile.exists()) setupLang();
+        if (lang.getString("notOnline") == null) setupLang();
         pluginPrefix = lang.getString("pluginPrefix");
         noPermission = lang.getString("noPermission");
         notPlayer = lang.getString("notPlayer");
@@ -33,6 +36,13 @@ public class Lang {
         atNotifyOff = lang.getString("atNotifyOff");
         playerSleepMsg = lang.getString("playerSleepMsg");
         restartMsg = lang.getString("restartMsg");
+        wrongAmount = lang.getString("wrongAmount");
+        notOnline = lang.getString("notOnline");
+        noEnoughMoney = lang.getString("noEnoughMoney");
+        noNegative = lang.getString("noNegative");
+        errorMessage = lang.getString("errorMessage");
+        transactionSuccess = lang.getString("transactionSuccess");
+        receiveSuccess = lang.getString("receiveSuccess");
     }
 
     public static void saveLang(){
@@ -46,6 +56,13 @@ public class Lang {
             lang.set("atNotifyOff", atNotifyOff);
             lang.set("playerSleepMsg", playerSleepMsg);
             lang.set("restartMsg", restartMsg);
+            lang.set("wrongAmount", wrongAmount);
+            lang.set("notOnline", notOnline);
+            lang.set("noEnoughMoney", noEnoughMoney);
+            lang.set("noNegative", noNegative);
+            lang.set("errorMessage", errorMessage);
+            lang.set("transactionSuccess", transactionSuccess);
+            lang.set("receiveSuccess", receiveSuccess);
         } else
             loadLang();
     }
@@ -60,6 +77,13 @@ public class Lang {
         lang.set("atNotifyOff", "&a@ 提醒已关闭");
         lang.set("playerSleepMsg", "%s 想要睡觉, 推荐所有人上床睡觉以度过晚上.");
         lang.set("restartMsg", "&c服务器将在 %s 秒后重启!");
+        lang.set("wrongAmount", "&c你输入了错误的金额! 请检查格式.");
+        lang.set("notOnline", "&c这个玩家不在线!");
+        lang.set("noEnoughMoney", "&c你没有足够的金钱!");
+        lang.set("noNegative", "&c你不能透支转账!");
+        lang.set("errorMessage", "&c在转账时发生了错误");
+        lang.set("transactionSuccess", "&a转账给 %s 成功!");
+        lang.set("receiveSuccess", "&a你收到了来自 %s 的转账, 金额: %d");
         try {
             lang.save(langFile);
         } catch (Exception e){

@@ -4,7 +4,7 @@ StarTool 是一个作者闲的没事干写的插件.
 # 编译状态 (Build Status)
 <p align="center">
   <a href="https://travis-ci.org/StarWishsama/StarTool">
-    <img src="https://travis-ci.org/StarWishsama/StarTool.svg?branch=master">
+    <img src="https://travis-ci.org/StarWishsama/StarTool.svg?branch=lite">
   </a>
 </p>
 

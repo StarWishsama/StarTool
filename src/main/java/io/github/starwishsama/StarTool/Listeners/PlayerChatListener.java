@@ -1,8 +1,8 @@
 package io.github.starwishsama.StarTool.Listeners;
 
-import io.github.starwishsama.StarTool.Commands.AtCommand;
 import io.github.starwishsama.StarTool.Files.Config;
 import io.github.starwishsama.StarTool.Files.Lang;
+import io.github.starwishsama.StarTool.Files.PlayerData;
 import io.github.starwishsama.StarTool.Utils.Utils;
 
 import org.bukkit.Bukkit;
@@ -27,11 +27,15 @@ public class PlayerChatListener implements Listener{
         if (msg.contains("@全体玩家") || msg.contains("@全体成员") || msg.contains("@all")){
             if (player.hasPermission("startool.at.all")) {
                 for (Player p : pList) {
-                    if (AtCommand.notifyStatus.containsKey(p.getUniqueId())) {
-                        boolean status = AtCommand.notifyStatus.get(p.getUniqueId());
-                        if (status) {
-                            p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));
-                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                    if (Config.playerDataList != null){
+                        for (PlayerData pd : Config.playerDataList){
+                            if (pd.getPlayerUUID() == p.getUniqueId()){
+                                boolean status = pd.getAtNotifyStatus();
+                                if (status){
+                                    p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));
+                                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                }
+                            }
                         }
                     } else {
                         p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));
@@ -57,11 +61,15 @@ public class PlayerChatListener implements Listener{
                             .replaceAll("@" + p.getName().toLowerCase() + " ", Utils.color("&b@" + p.getName() + "&r "))
                             .replaceAll("@ " + p.getName().toLowerCase(), Utils.color("&b@ " + p.getName() + "&r"))
                             .replaceAll("@ " + p.getName(), Utils.color("&b@ " + p.getName() + "&r"));
-                    if (AtCommand.notifyStatus.containsKey(p.getUniqueId())) {
-                        boolean status = AtCommand.notifyStatus.get(p.getUniqueId());
-                        if (status) {
-                            p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));
-                            p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                    if (Config.playerDataList != null){
+                        for (PlayerData pd : Config.playerDataList){
+                            if (pd.getPlayerUUID() == p.getUniqueId()){
+                                boolean status = pd.getAtNotifyStatus();
+                                if (status) {
+                                    p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));
+                                    p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                }
+                            }
                         }
                     } else {
                         p.sendMessage(Utils.color("&b@ > &6有人@你" + "&7(" + p.getName() + ")"));

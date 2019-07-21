@@ -18,7 +18,7 @@ public class BlockData {
     public static void loadCfg(){
         FileConfiguration fc = YamlConfiguration.loadConfiguration(blockData);
         if (fc.get("campFires") != null)
-            campFires = (List<Location>) fc.get("campFires");
+            campFires = (List<Location>) fc.getList("campFires");
     }
 
     public static void saveCfg(){
